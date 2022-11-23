@@ -106,4 +106,4 @@ disabled = true
 
 [ruby]
 format = "via [ $version]($style) "
-disabled = true
+disabled = false
