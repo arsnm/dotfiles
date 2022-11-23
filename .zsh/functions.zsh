@@ -23,14 +23,14 @@ school() {
             cd $HOME/Documents/cpge/mp/tipe_mp
             check_network
             if [ $? = 1 ]; then
-                git push
+                git pull
             fi
         elif [ $1 = "info" ]; then
             echo "ouverture INFO..."
             cd $HOME/Documents/cpge/mp/info_mp
             check_network
             if [ $? = 1 ]; then
-                git push
+                git pull
             else
                 echo "No network, git push aborted"
             fi
