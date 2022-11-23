@@ -98,7 +98,7 @@ disabled = true
 [python]
 symbol = " "
 python_binary = "python3"
-disabled = false
+disabled = true
 
 [nodejs]
 format = "via [ $version](bold green) "
