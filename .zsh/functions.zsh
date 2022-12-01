@@ -52,4 +52,6 @@ school() {
 project_euler() {
     cd $HOME/Documents/dev/project_euler/
     source $HOME/.venv/project_euler/bin/activate
+    code .
+    /usr/bin/open -a "/Applications/Google Chrome.app" 'https://projecteuler.net/'
 }
