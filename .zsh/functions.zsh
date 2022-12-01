@@ -48,3 +48,8 @@ school() {
         fi
     fi
 }
+
+project_euler() {
+    cd $HOME/Documents/dev/project_euler/
+    source $HOME/.venv/project_euler/bin/activate
+}
