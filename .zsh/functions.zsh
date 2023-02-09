@@ -32,7 +32,7 @@ school() {
             if [ $? = 1 ]; then
                 git pull
             else
-                echo "No network, git pullaborted"
+                echo "No network, git pull aborted"
             fi
             if [ $# -ge 2 ]; then
                 echo 
