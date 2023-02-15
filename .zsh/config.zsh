@@ -1,5 +1,7 @@
 #user configuration
 
+autoload zmv
+
 #pyenv configuration
 PATH=$(pyenv root)/shims:$PATH
 
