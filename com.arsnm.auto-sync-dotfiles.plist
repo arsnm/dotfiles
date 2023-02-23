@@ -10,14 +10,14 @@
         <array>
             <string>zsh</string>
             <string>-c</string>
-            <string>/Users/arsnm/.dotfiles/sync_dotfiles<.sh</string>
+            <string>/Users/arsnm/code/dotfiles/sync_dotfiles.sh</string>
         </array>
         <key>StandardOutPath</key>
         <string>/Users/arsnm/tmp/com.arsnm.sync-dotfiles.stdout</string>
         <key>StandardErrorPath</key>
         <string>/Users/arsnm/tmp/com.arsnm.sync-dotfiles.stderr</string>
         <key>WorkingDirectory</key>
-        <string>/Users/arsnm/.dotfiles</string>
+        <string>/Users/arsnm/code/dotfiles</string>
         <key>KeepAlive</key>
         <true/>
      </dict>
