@@ -3,7 +3,7 @@
 autoload zmv
 
 #pyenv configuration
-PATH=$(pyenv root)/shims:$PATH
+#PATH=$(pyenv root)/shims:$PATH
 
 # opam configuration
 [[ ! -r /Users/arsnm/.opam/opam-init/init.zsh ]] || source /Users/arsnm/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
