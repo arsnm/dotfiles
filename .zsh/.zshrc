@@ -1,4 +1,4 @@
-for config ($HOME/.zsh/*.zsh) source $config
+for config ($HOME/.zsh/*.zsh) . $config
 
 . $HOME/.zsh/aliases.zsh
 
