@@ -1,5 +1,3 @@
-for config in ($HOME/.zsh/*.zsh);
-    source $config;
-done
+for config ($HOME/.zsh/*.zsh) source $config
 
 eval "$(starship init zsh)"
