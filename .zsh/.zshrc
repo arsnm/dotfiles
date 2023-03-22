@@ -1,4 +1,4 @@
-for config in (~/.zsh/*.zsh);
+for config in ($HOME/.zsh/*.zsh);
     source "$config";
 done
 
