@@ -2,8 +2,10 @@ check_network () {
     host="www.google.com"
     ping -c1 "$host" &> /dev/null
     if [ $? -eq 0 ]; then
+        echo "Connected to internet";
         return 1
     else
+        echo "Not connected to internet";
         return 0
     fi  
 }
