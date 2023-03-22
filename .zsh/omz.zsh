@@ -27,6 +27,7 @@ zstyle ':omz:update' frequency 13
 
 # Uncomment the following line to disable colors in ls.
 DISABLE_LS_COLORS="true"
+# Disabled it because I prefered to use `lsd` package instead.
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
