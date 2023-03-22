@@ -1,5 +1,3 @@
-echo "successfuly sourced"
-
 check_network () {
     host="www.google.com"
     ping -c1 "$host" &> /dev/null
