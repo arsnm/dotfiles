@@ -2,6 +2,4 @@
 
 for config ($HOME/.zsh/*.zsh) source $config
 
-alias ls="lsd -lah"
-
 eval "$(starship init zsh)"
