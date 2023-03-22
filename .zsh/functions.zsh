@@ -57,3 +57,5 @@ project_euler() {
     code .
     /usr/bin/open -a "/Applications/Google Chrome.app" 'https://projecteuler.net/'
 }
+
+alias ls="lsd -lah"
