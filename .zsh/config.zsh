@@ -20,3 +20,7 @@ spaceship_venv_status() {
   echo -n "$(basename $VIRTUAL_ENV)"
   echo -n "%{$reset_color%}"
 }
+
+# texlive configuration
+
+PATH=/usr/local/texlive/2023/bin/x86_64-linux:$PATH
