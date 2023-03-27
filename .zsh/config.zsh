@@ -3,7 +3,15 @@
 autoload zmv
 
 #pyenv configuration
-PATH=$(pyenv root)/shims:$PATH
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    PATH=$(pyenv root)/shims:$PATH
+fi
+
+if [[ "$OSTYPE" =~ ^linux ]]; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 # opam configuration
 [[ ! -r /Users/arsnm/.opam/opam-init/init.zsh ]] || source /Users/arsnm/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
