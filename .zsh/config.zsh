@@ -1,5 +1,8 @@
 #user configuration
 
+if [[ "$OSTYPE" =~ ^linux ]]; then
+    PATH=$PATH:/snap/bin #add snap packages to PATH
+fi
 autoload zmv
 
 #pyenv configuration
