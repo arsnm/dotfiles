@@ -1,11 +1,11 @@
-#user configuration
+# user configuration
 
 if [[ "$OSTYPE" =~ ^linux ]]; then
     PATH=$PATH:/snap/bin #add snap packages to PATH
 fi
 autoload zmv
 
-#pyenv configuration
+# pyenv configuration
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     PATH=$(pyenv root)/shims:$PATH
 fi
@@ -19,8 +19,8 @@ fi
 # opam configuration
 [[ ! -r /Users/arsnm/.opam/opam-init/init.zsh ]] || source /Users/arsnm/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
-# Virtual environment.
-# Show current virtual environment (Python).
+# virtual environment.
+# show current virtual environment (Python).
 spaceship_venv_status() {
   [[ $SPACESHIP_VENV_SHOW == false ]] && return
 
@@ -33,5 +33,4 @@ spaceship_venv_status() {
 }
 
 # texlive configuration
-
 PATH=/usr/local/texlive/2023/bin/x86_64-linux:$PATH
