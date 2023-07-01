@@ -18,7 +18,7 @@ mkcd ()
 
 school() {
     cd $HOME/Documents/cpge/mp/
-    source $HOME/.venv/cs_venv/bin/activate
+    source $HOME/.venv/cs_venv/bin/activate || source $HOME/.venv/cs_school/bin/activate
     if [ ! -z "$1" ]; then
         if [ $1 = "tipe" ]; then
             echo "ouverture TIPE..."
@@ -52,7 +52,7 @@ school() {
 }
 
 project_euler() {
-    cd $HOME/Documents/dev/project_euler/
+    cd $HOME/Documents/code/project_euler/
     source $HOME/.venv/pEuler_venv/bin/activate
     code .
     /usr/bin/open -a "/Applications/Google Chrome.app" 'https://projecteuler.net/'
