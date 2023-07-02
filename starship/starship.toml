@@ -43,22 +43,23 @@ disabled = false
 
 # Shows the username
 [username]
-style_user = 'white'
-style_root = 'white'
+style_user = 'purple'
+style_root = 'bold purple'
 format = '[$user]($style) '
 disabled = false
 show_always = true
 
 [hostname]
 ssh_only = false
-format = '[$hostname](bold yellow) '
+style = 'bold yellow'
+format = '[$hostname]($style) '
 disabled = false
 
 [directory]
 truncation_length = 2
 truncation_symbol = '…/'
 home_symbol = ' ~'
-read_only_style = '197'
+read_only_style = 'bold red'
 read_only = '  '
 format = 'at [$path]($style)[$read_only]($read_only_style) '
 
