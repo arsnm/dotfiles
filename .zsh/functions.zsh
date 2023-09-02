@@ -17,19 +17,19 @@ mkcd ()
 
 
 school() {
-    cd $HOME/Documents/cpge/mp/
+    cd $HOME/Documents/cpge/mp2/
     source $HOME/.venv/cs_venv/bin/activate || source $HOME/.venv/cs_school/bin/activate
     if [ ! -z "$1" ]; then
         if [ $1 = "tipe" ]; then
             echo "ouverture TIPE..."
-            cd $HOME/Documents/cpge/mp/tipe_mp
+            cd $HOME/Documents/cpge/mp2/tipe-mp2
             check_network
             if [ $? = 1 ]; then
                 git pull
             fi
         elif [ $1 = "info" ]; then
             echo "ouverture INFO..."
-            cd $HOME/Documents/cpge/mp/info_mp
+            cd $HOME/Documents/cpge/mp2/info-mp2
             check_network
             if [ $? = 1 ]; then
                 git pull
@@ -39,9 +39,9 @@ school() {
             if [ $# -ge 2 ]; then
                 echo 
                 if [ $2 = "opt" ]; then
-                    cd $HOME/Documents/cpge/mp/info_mp/infoOpt
+                    cd $HOME/Documents/cpge/mp2/info-mp2/info-opt
                 elif [ $2 = "tc" ]; then
-                    cd $HOME/Documents/cpge/mp/info_mp/infoTC
+                    cd $HOME/Documents/cpge/mp2/info-mp2/info-tc
                 fi
             fi
         fi
