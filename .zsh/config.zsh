@@ -5,6 +5,12 @@ if [[ "$OSTYPE" =~ ^linux ]]; then
 fi
 autoload zmv
 
+# keychain and ssh configuration
+if [ -x /usr/bin/keychain ]; then
+    /usr/bin/keychain --nogui $HOME/.ssh/id_ed25519
+    source $HOME/.keychain/$(hostname)-sh
+fi
+
 # pyenv configuration
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     PATH=$(pyenv root)/shims:$PATH
