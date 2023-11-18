@@ -1,1 +1,1 @@
-require ("arsnm")
+require('arsnm.config')

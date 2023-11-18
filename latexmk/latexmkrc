@@ -1,0 +1,2 @@
+$pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode --shell-escape -file-line-error --aux-directory=./.aux -f';
+@generated_exts = (@generated_exts, 'synctex.gz');
