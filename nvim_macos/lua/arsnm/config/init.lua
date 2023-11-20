@@ -11,10 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("config.globals")
-require("config.options")
-require("config.keymaps")
-require("config.autocmds")
+require("arsnm.config.globals")
+require("arsnm.config.options")
+require("arsnm.config.keymaps")
+require("arsnm.config.autocmds")
 
 local plugins = "arsnm.plugins"
 
