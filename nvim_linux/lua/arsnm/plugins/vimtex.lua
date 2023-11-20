@@ -36,7 +36,7 @@ return {
 		-- Disable quickfix auto open
 		vim.g.vimtex_quickfix_ignore_mode = 0
 		-- PDF viewer settings
-		vim.g.vimtex_view_general_viewer = "sioyek"
+		vim.g.vimtex_view_general_viewer = "zathura"
 		vim.cmd("syntax enable")
 		local options =
 		string.format(

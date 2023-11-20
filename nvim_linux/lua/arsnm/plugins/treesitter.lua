@@ -8,7 +8,7 @@ return {
 	opts = {
 
 		-- Add languages to be installed here that you want installed for treesitter
-		ensure_installed = { 
+		ensure_installed = {
 			'c', 'cpp', 'lua', 'python', 'vimdoc', 'vim', 'bash', 'ocaml'
 		},
 
@@ -24,7 +24,7 @@ return {
 				node_incremental = '<c-space>',
 				scope_incremental = '<c-s>',
 				node_decremental = '<M-space>',
-			},
+			}
 		},
 		textobjects = {
 			select = {

@@ -67,14 +67,15 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     web-search
+    vi-mode
 )
 
-plugins+=(
-    zsh-vi-mode
-)
+# plugins+=(
+#     zsh-vi-mode
+# )
 # zsh-vi-mode configuration
 # change default escape bindkey "^]"
-ZVM_VI_INSERT_ESCAPE_BINDKEY=kj
-ZVM_VI_EDITOR='nvim'
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=kj
+# ZVM_VI_EDITOR='nvim'
 
 source $ZSH/oh-my-zsh.sh

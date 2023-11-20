@@ -1,4 +1,3 @@
-
 #aliases
 
 alias zshconfig="mate ~/.zshrc"
