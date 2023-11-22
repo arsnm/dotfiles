@@ -45,3 +45,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- add ruller to 80th column
+vim.opt.colorcolumn = '80'

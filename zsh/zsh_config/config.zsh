@@ -15,13 +15,7 @@ fi
 PATH=$HOME/.pyenv/bin:$PATH
 PATH=$(pyenv root)/shims:$PATH
 
-# setup virtualenv home
-export WORKON_HOME=$HOME/.venv
-# tell pyenv-virtualenvwrapper to use pyenv when creating new Python environments
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-
 eval "$(pyenv init -)"
-pyenv virtualenvwrapper_lazy
 
 
 # opam configuration
@@ -32,7 +26,7 @@ PATH=/usr/local/texlive/2023/bin/x86_64-linux:$PATH
 
 # cargo configuration
 if [[ "$OSTYPE" =~ ^linux ]]; then
-    PATH=$PATH:/home/arsnm/.cargo/bin # add cargo to PATH
+    PATH=$PATH:$HOME/.cargo/bin # add cargo to PATH
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
