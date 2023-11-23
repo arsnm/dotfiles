@@ -1,1 +1,2 @@
-require('arsnm.config')
+require('arsnm.core')
+require('arsnm.lazy')

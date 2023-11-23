@@ -1,20 +1,7 @@
 return {
-	-- Git related plugins
-	'tpope/vim-fugitive',
-	'tpope/vim-rhubarb',
+  "nvim-lua/plenary.nvim", -- lua functions that many plugins use
 
-	-- Detect tabstop and shiftwidth automatically
-	'tpope/vim-sleuth',
+  "christoomey/vim-tmux-navigator", -- tmux & split window navigation
 
-	{
-		-- Add indentation guides even on blank lines
-		'lukas-reineke/indent-blankline.nvim',
-		-- Enable `lukas-reineke/indent-blankline.nvim`
-		-- See `:help ibl`
-		main = 'ibl',
-		opts = {},
-	},
-
-	-- "gc" to comment visual regions/lines
-	{ 'numToStr/Comment.nvim', opts = {} }
+  "inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
 }
