@@ -43,6 +43,7 @@ return {
 					"dockerfile",
 					"gitignore",
 					"query",
+					"ocaml",
 				},
 				incremental_selection = {
 					enable = true,

@@ -138,8 +138,24 @@ return {
 		})
 		vim.g.python3_host_prog = "$HOME/.venv/nvim/bin/python"
 
-		-- configure python server
+		-- configure latex server
 		lspconfig["texlab"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- configure ocaml server
+		lspconfig["ocamllsp"].setup({
+			cmd = { "ocamllsp" },
+			filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+			root_dir = lspconfig.util.root_pattern(
+				"*.opam",
+				"esy.json",
+				"package.json",
+				".git",
+				"dune-project",
+				"dune-workspace"
+			),
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
