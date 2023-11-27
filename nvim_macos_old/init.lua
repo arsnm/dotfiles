@@ -1,1 +1,0 @@
-require('arsnm.config')

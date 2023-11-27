@@ -135,6 +135,7 @@ return {
 		lspconfig["pyright"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			settings = {},
 		})
 		vim.g.python3_host_prog = "$HOME/.venv/nvim/bin/python"
 
