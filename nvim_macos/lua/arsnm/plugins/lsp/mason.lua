@@ -39,6 +39,7 @@ return {
 				"pyright",
 				"texlab",
 				"ocamllsp",
+				"rust_analyzer",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -53,6 +54,7 @@ return {
 				"flake8", -- python linter
 				"eslint_d", -- js linter
 				"ocamlformat", -- ocaml formatter
+				"rust_analyzer",
 			},
 		})
 	end,

@@ -145,6 +145,19 @@ return {
 			on_attach = on_attach,
 		})
 
+		-- configure rust server
+		lspconfig["rust_analyzer"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = {
+				check = {
+					command = "clippy",
+				},
+				diagnostics = {
+					enable = true,
+				},
+			},
+		})
 		-- configure ocaml server
 		lspconfig["ocamllsp"].setup({
 			cmd = { "ocamllsp" },

@@ -21,7 +21,7 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 opt.cursorline = true -- highlight the current cursor line
 
 -- vertical ruler
-opt.colorcolumn = "80"
+opt.colorcolumn = "88"
 
 -- appearance
 
