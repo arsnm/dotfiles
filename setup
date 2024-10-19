@@ -40,12 +40,12 @@ command_exists() {
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # symbolic links
-ln -sf "$PWD/alacritty" "$XDG_CONFIG_HOME/alacritty"
-ln -sf "$PWD/zsh" "$XDG_CONFIG_HOME/zsh"
-ln -sf "$PWD/tmux" "$XDG_CONFIG_HOME/tmux"
-ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
-ln -sf "$PWD/starship.toml" "$XDG_CONFIG_HOME/starship.toml"
-ln -sf "$PWD/nvim" "$XDG_CONFIG_HOME/nvim"
+ln -sfn "$PWD/alacritty" "$XDG_CONFIG_HOME/alacritty"
+ln -sfn "$PWD/zsh" "$XDG_CONFIG_HOME/zsh"
+ln -sfn "$PWD/tmux" "$XDG_CONFIG_HOME/tmux"
+ln -sfn "$PWD/.zshrc" "$HOME/.zshrc"
+ln -sfn "$PWD/starship.toml" "$XDG_CONFIG_HOME/starship.toml"
+ln -sfn "$PWD/nvim" "$XDG_CONFIG_HOME/nvim"
 
 # check for os system
 unameOut="$(uname -s)"
@@ -93,9 +93,6 @@ if [ "$machine" == "Mac" ]; then
 
         read -p "Do you want to install homebrew formulae and casks? (y/n): " confirm
         if [[ "$confirm" =~ ^[Yy]$ ]]; then
-            echo "Installing tap for nerd fonts..."
-            brew tap homebrew/cask-fonts
-
             echo "Installing formulae..."
             for formula in "${FORMULAE[@]}"; do
                 if brew list "$formula" &>/dev/null; then
