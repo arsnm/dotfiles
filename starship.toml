@@ -2,7 +2,7 @@
 
 # Customize the prompt format to include user@host, directory, git, and time on the right
 format = """
-$venv$username$hostname:$directory $git_branch$git_status$character
+$python$username$hostname:$directory $git_branch$git_status$character
 \\$ 
 """
 right_format="$time"
@@ -50,7 +50,7 @@ style = "red"  # Red color for git status
 [python]
 pyenv_version_name = true  # Show pyenv environment name
 style = "cyan"  # Cyan color for the virtual environment name
-format = "[$symbol$version]($style) "
+format = '[\(${virtualenv}:$version\)]($style) '
 
 # Time section (displayed on the right)
 [time]
