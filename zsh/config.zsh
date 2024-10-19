@@ -14,6 +14,9 @@ if [[ "$(uname)" == "Linux" ]]; then
     PATH=$PATH:/snap/bin #add snap packages to PATH
     ssh-add -q ~/.ssh/id_ed25519
     PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH # add texlive to path
+    if [ -f ~/.bash_sysinit ]; then
+    . ~/.bash_sysinit
+    fi
 fi
 
 autoload zmv
