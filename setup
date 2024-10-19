@@ -5,24 +5,47 @@
 # Meant to be run on every new machine i use / work on in order to have all of my 
 # essential tools quickly and out of the box (should work on WSL and macOS)
 
-# brew packages mac
-# amethyst alacritty neovim fzf bash-completion@2 tmux mactex exa
+FORMULAE=(
+    git
+    neovim
+    fzf
+    tmux
+    starship
+    ripgrep
+    gcc
+    pyenv
+    opam
+)
 
-# ubuntu packages apt
-# ripgrep gh
+CASKS=(
+    1password-cli
+    1password
+    google-chrome
+    alacritty
+    mactex
+    amethyst
+    sioyek
+    linearmouse
+    raycast
+    hiddenbar
+    font-jetbrains-mono-nerd-font
+    obsidian
+)
 
-# ubuntu apt neovim setup
-# neovim gcc g++ unzip
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
 
 # create directories
 export XDG_CONFIG_HOME="$HOME/.config"
-mkdir -p "$XDG_CONFIG_HOME"/bash
 
 # symbolic links
 ln -sf "$PWD/alacritty" "$XDG_CONFIG_HOME/alacritty"
-ln -sf "$PWD/bash/.bash_profile" "$HOME/.bash_profile"
-ln -sf "$PWD/bash/.bashrc" "$HOME/.bashrc"
-ln -sf "$PWD/tmux/.tmux.conf" "$HOME/.tmux.conf"
+ln -sf "$PWD/zsh" "$XDG_CONFIG_HOME/zsh"
+ln -sf "$PWD/tmux" "$XDG_CONFIG_HOME/tmux"
+ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
+ln -sf "$PWD/starship.toml" "$XDG_CONFIG_HOME/starship.toml"
+ln -sf "$PWD/nvim" "$XDG_CONFIG_HOME/nvim"
 
 # check for os system
 unameOut="$(uname -s)"
@@ -34,10 +57,71 @@ case "${unameOut}" in
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
-# nvim configuration
+#packages installation
 
 if [ "$machine" == "Mac" ]; then
-    ln -sf "$PWD/nvim_macos" "$XDG_CONFIG_HOME/nvim"      
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    ln -sf "$PWD/nvim_linux" "$XDG_CONFIG_HOME/nvim"
+    echo "Starting setup for mac..."
+
+    # Oh My Zsh installation
+    if [ ! -d "$HOME/.oh-my-zsh" ]; then
+        read -p "Oh My Zsh is not installed. Do you want to install it? (y/n): " install_omz
+
+        if [[ "$install_omz" =~ ^[Yy]$ ]]; then
+            echo "Installing Oh My Zsh..."
+            sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        else
+            echo "Skipping Oh My Zsh installation."
+        fi
+    else
+        echo "Oh My Zsh is already installed."
+    fi
+
+    # Homebrew installation
+    if ! command_exists brew; then
+        read -p "Homebrew not found. Do you want to install it? (y/n): " install_homebrew
+	if [[ "$install_homebrew" =~ ^[Yy]$ ]]; then
+	    echo "Installing Homebrew..."
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	else
+	   echo "Not installing Homebrew."
+	fi
+    fi
+    if command_exists brew; then
+        echo "Updating/Upgrading Homebrew..."
+        brew update
+        brew upgrade
+
+        read -p "Do you want to install homebrew formulae and casks? (y/n): " confirm
+        if [[ "$confirm" =~ ^[Yy]$ ]]; then
+            echo "Installing tap for nerd fonts..."
+            brew tap homebrew/cask-fonts
+
+            echo "Installing formulae..."
+            for formula in "${FORMULAE[@]}"; do
+                if brew list "$formula" &>/dev/null; then
+                    echo "$formula is already installed."
+                else
+                    echo "Installing $formula..."
+                    brew install "$formula"
+                fi
+            done
+
+            echo "Installing casks..."
+            for cask in "${CASKS[@]}"; do
+                if brew list --cask "$cask" &>/dev/null; then
+                    echo "$cask is already installed."
+                else
+                    echo "Installing $cask..."
+                    brew install --cask "$cask"
+                fi
+            done
+       else
+           echo "Installation canceled."
+       fi
+
+       echo "Cleaning up..."
+       brew cleanup
+    fi
+elif [ "$machine" == "Linux" ]; then
+    echo "Starting setup for linux..."
 fi

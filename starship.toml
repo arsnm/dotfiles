@@ -1,0 +1,66 @@
+# ~/.config/starship.toml
+
+# Customize the prompt format to include user@host, directory, git, and time on the right
+format = """
+$venv$username$hostname:$directory $git_branch$git_status$character
+\\$ 
+"""
+right_format="$time"
+
+add_newline = false
+
+# Username section
+[username]
+style_user = "yellow"
+style_root = "bold yellow"
+show_always = true  # Always show the username
+disabled = false
+format = "[$user]($style)"
+
+# Hostname section
+[hostname]
+ssh_only = false  # Show hostname even when not in SSH
+style = "242"  # Light gray color for hostname
+format = "@[$hostname]($style)"  # Show the full hostname after '@'
+
+# Directory section
+[directory]
+truncation_length = 1  # Show only the last directory
+style = "magenta"  # Purple/magenta color for the directory
+
+# Git branch section
+[git_branch]
+symbol = ""  # No symbol before the branch name
+style = "green"  # Green color for the branch name
+format = "[$branch]($style) "  # Display the branch in brackets
+
+# Git status section
+[git_status]
+conflicted = "🔀"   # Icon for conflicts
+ahead = "↑${count}" # Icon for ahead commits
+behind = "↓${count}" # Icon for behind commits
+untracked = "??"    # Icon for untracked files
+stashed = "+"      # Icon for stashed changes
+modified = "*"      # Icon for modified files
+deleted = "x"      # Icon for deleted files
+renamed = "->"      # Icon for renamed files
+style = "red"  # Red color for git status
+
+# Virtual environment section
+[python]
+pyenv_version_name = true  # Show pyenv environment name
+style = "cyan"  # Cyan color for the virtual environment name
+format = "[$symbol$version]($style) "
+
+# Time section (displayed on the right)
+[time]
+disabled = false
+use_12hr = true
+style = "cyan"
+format = "[$time]($style)"
+
+[character]
+disabled = true
+
+[cmd_duration]
+disabled = true

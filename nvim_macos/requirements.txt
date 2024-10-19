@@ -1,6 +1,0 @@
-black
-ruff
-Pygments
-pyright
-neovim
-pynvim

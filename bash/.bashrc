@@ -26,7 +26,7 @@ export DOTFILES="$GHREPOS/dotfiles"
 export CODE="$GHREPOS/lab"
 export SCRIPTS="$DOTFILES/scripts"
 export ICLOUD="$HOME/icloud"
-export SCHOOL="$HOME/Documents/cpge/mp2"
+export SCHOOL="$HOME/code/telecom"
 
 # ~~~~~~~~~~~~~~~ Path configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 # function from Arch Wiki, to prevent adding directories multiple times
@@ -74,14 +74,15 @@ export HISTCONTROL=ignorespace
 # SSH Script from arch wiki
 
 if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-	ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+    ssh-agent >"$XDG_RUNTIME_DIR/ssh-agent.env"
 fi
 if [[ ! "$SSH_AUTH_SOCK" ]]; then
-	source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     ssh-add -q --apple-use-keychain ~/.ssh/id_ed25519
+    ssh-add -q --apple-use-keychain ~/.ssh/ssh_telecom
 else
     ssh-add -q ~/.ssh/id_ed25519
 fi
@@ -150,6 +151,7 @@ alias sbr='source ~/.bashrc'
 # env variables
 export VISUAL=nvim
 export EDITOR=nvim
+export PYENV_ROOT="$PYENV_ROOT_"
 
 # fzf aliases
 # use fp to do a fzf search and preview the files
@@ -158,15 +160,17 @@ alias fp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}
 alias vf='v $(fp)'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	source "$HOME/.fzf.bash"
-	# echo "I'm on Mac!"
+    source "$HOME/.fzf.bash"
+    echo "Using macOS"
 
-	# brew bash completion
-	[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+    # brew bash completion
+    [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+    alias gcc=gcc-14 # to override xcode gcc, which is clang
 else
-	#	source /usr/share/fzf/key-bindings.bash
-	#	source /usr/share/fzf/completion.bash
-	[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+    source /usr/share/fzf/key-bindings.bash
+    source /usr/share/fzf/completion.bash
+    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+    echo "Using $OSTYPE"
 fi
 
 # pyenv configuration
