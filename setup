@@ -120,5 +120,17 @@ if [ "$machine" == "Mac" ]; then
        brew cleanup
     fi
 elif [ "$machine" == "Linux" ]; then
-    echo "Starting setup for linux..."
+    echo "Starting setup on Linux"
+    if [ ! -d "$HOME/.oh-my-zsh" ]; then
+        read -p "Oh My Zsh is not installed. Do you want to install it? (y/n): " install_omz
+
+        if [[ "$install_omz" =~ ^[Yy]$ ]]; then
+            echo "Installing Oh My Zsh..."
+            sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        else
+            echo "Skipping Oh My Zsh installation."
+        fi
+    else
+        echo "Oh My Zsh is already installed."
+    fi
 fi

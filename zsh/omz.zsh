@@ -31,6 +31,21 @@ zstyle ':omz:update' frequency 2
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
+# Add plugins that need to be downloaded manually
+PLUGIN_DIR="$ZSH/custom/plugins/"
+
+# Check if the zsh-syntax-highlighting plugin is installed
+if [ ! -d "$PLUGIN_DIR/zsh-syntax-highlighting" ]; then
+    echo "zsh-syntax-highlighting plugin not found. Installing..."
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$PLUGIN_DIR/zsh-syntax-highlighting"
+fi
+
+# Check if the zsh-autosuggestions plugin is installed
+if [ ! -d "$PLUGIN_DIR/zsh-autosuggestions" ]; then
+    echo "zsh-autosuggestions plugin not found. Installing..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$PLUGIN_DIR/zsh-autosuggestions"
+fi
+
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     1password

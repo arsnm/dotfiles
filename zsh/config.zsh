@@ -38,7 +38,7 @@ eval "$(pyenv init -)"
 [[ ! -r /Users/arsnm/.opam/opam-init/init.zsh ]] || source /Users/arsnm/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 # texlive configuration
-PATH=/usr/local/texlive/2023/bin/x86_64-linux:$PATH
+PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
 
 # add all other configuration files
 source $XDG_CONFIG_HOME/zsh/omz.zsh
