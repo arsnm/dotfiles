@@ -45,4 +45,4 @@ alias vf='v $(fp)'
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias jupyternb="jupyter lab --no-browser"
-alias svenv="source .venv/bin/activate"
+# alias svenv="source .venv/bin/activate" # deprected (see functions.zsh)

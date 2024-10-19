@@ -35,7 +35,7 @@ PATH=$(pyenv root)/shims:$PATH
 eval "$(pyenv init -)"
 
 # opam configuration
-[[ ! -r /Users/arsnm/.opam/opam-init/init.zsh ]] || source /Users/arsnm/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 # texlive configuration
 MANPATH=/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH
