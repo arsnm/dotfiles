@@ -1,4 +1,3 @@
-import = ["~/.config/alacritty/gruber_darker.toml"]
 
 [env]
 TERM = "xterm-256color"
@@ -15,3 +14,6 @@ decorations = "none"
 [window.padding]
 x = 7
 y = 0
+
+[general]
+import = ["~/.config/alacritty/gruber_darker.toml"]
