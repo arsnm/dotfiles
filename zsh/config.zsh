@@ -2,18 +2,13 @@
 # zsh configuration
 #
 
-if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-    ssh-agent >"$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
-
 # specific configuration for linux systems
 if [[ "$(uname)" == "Linux" ]]; then
     PATH=$PATH:/snap/bin #add snap packages to PATH
-    ssh-add -q ~/.ssh/id_ed25519
-    PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH # add texlive to path
+    eval $(keychain --eval ~/.ssh/id_ed25519)
+    # ssh-add -q ~/.ssh/id_ud25519
+    PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
+    PATH=/opt/nvim-linux64/bin:$PATH
     if [ -f ~/.bash_sysinit ]; then
     . ~/.bash_sysinit
     fi
@@ -24,6 +19,12 @@ autoload zmv
 # specific confiuration for macos systems
 if [[ "$(uname)" == "Darwin" ]]; then
     export PATH=/opt/homebrew/bin:$PATH
+    if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+	    ssh-agent >"$XDG_RUNTIME_DIR/ssh-agent.env"
+    fi
+    if [[ ! "$SSH_AUTH_SOCK" ]]; then
+	    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+    fi
     ssh-add -q --apple-use-keychain ~/.ssh/id_ed25519
     ssh-add -q --apple-use-keychain ~/.ssh/ssh_telecom
     PATH=/usr/local/texlive/2024/bin/universal-darwin:$PATH # add texlive to path

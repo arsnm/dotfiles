@@ -28,7 +28,7 @@ return {
             -- list of servers for mason to install
             ensure_installed = {
                 "lua_ls",
-                "ocamllsp",
+                -- "ocamllsp",
                 "pyright",
                 "clangd",
             },
@@ -38,7 +38,7 @@ return {
             ensure_installed = {
                 "stylua", -- lua formatter
                 "black", -- python formatter
-                "ocamlformat", -- ocaml formatter
+                -- "ocamlformat", -- ocaml formatter
                 "clang-format", --c formatter
             },
         })
