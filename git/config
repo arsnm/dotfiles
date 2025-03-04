@@ -9,11 +9,14 @@
 [gpg]
   format = ssh
 
-[gpg "ssh"]
-  program = "/opt/1Password/op-ssh-sign"
-
 [commit]
   gpgsign = true
+
+[includeIf "gitdir:/Users/*"]
+    path = ~/.config/git/macos.config
+
+[includeIf "gitdir:/home/*"]
+    path = ~/.config/git/linux.config
 
 [includeIf "gitdir:~/code/repos/gitlab/telecom-paris/"]
     path = ~/.config/git/telecom-paris.config
