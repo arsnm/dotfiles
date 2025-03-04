@@ -40,12 +40,16 @@ command_exists() {
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # symbolic links
+echo "Creating symbolic links..."
 ln -sfn "$PWD/alacritty" "$XDG_CONFIG_HOME/alacritty"
 ln -sfn "$PWD/zsh" "$XDG_CONFIG_HOME/zsh"
 ln -sfn "$PWD/tmux" "$XDG_CONFIG_HOME/tmux"
 ln -sfn "$PWD/.zshrc" "$HOME/.zshrc"
 ln -sfn "$PWD/starship.toml" "$XDG_CONFIG_HOME/starship.toml"
 ln -sfn "$PWD/nvim" "$XDG_CONFIG_HOME/nvim"
+ln -sfn "$PWD/kitty" "$XDG_CONFIG_HOME/kitty"
+ln -sfn "$PWD/hypr" "$XDG_CONFIG_HOME/hypr"
+ln -sfn "$PWD/git" "$XDG_CONFIG_HOME/git"
 
 # check for os system
 unameOut="$(uname -s)"

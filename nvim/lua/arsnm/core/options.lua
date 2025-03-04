@@ -63,7 +63,7 @@ opt.cursorline = true
 opt.scrolloff = 20
 
 -- Indicate python path for neovim
-g.python3_host_prog = os.getenv("HOME") .. "/.config/venvs/nvim/bin/python"
+g.python3_host_prog = os.getenv("VENVS_PATH") .. "/nvim/bin/python"
 
 -- Tabs behavior
 opt.expandtab = true

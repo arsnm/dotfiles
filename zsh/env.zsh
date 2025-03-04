@@ -13,7 +13,7 @@ export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 export ICLOUD="$HOME/icloud"
 export SCHOOL="$CODE/telecom"
-export VENVS_PATH="$XDG_CONFIG_HOME/venvs"
+export VENVS_PATH="$XDG_CONFIG_HOME/.venvs"
 
 export VISUAL="nvim"
 export EDITOR="nvim"

@@ -1,0 +1,19 @@
+[user]
+    email = arsene.mallet2004@gmail.com
+    name = arsnm
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIwtjIZEs+PR+Gpf4AUxJ51tcHwZLJFTHhkw4Z4obKem
+
+[core]
+    editor = nvim
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
+
+[commit]
+  gpgsign = true
+
+[includeIf "gitdir:~/code/repos/gitlab/telecom-paris/"]
+    path = ~/.config/git/telecom-paris.config

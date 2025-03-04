@@ -48,11 +48,9 @@ fi
 
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    1password
     git
     web-search
     tmux
-    vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
     git-prompt
