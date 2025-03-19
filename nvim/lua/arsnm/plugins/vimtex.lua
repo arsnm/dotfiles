@@ -2,20 +2,20 @@ return {
     "lervag/vimtex",
     config = function()
         vim.g.vimtex_compiler_method = "latexmk"
-        vim.g.vimtex_compiler_latexmk = {
-            callback = 1,
-            aux_dir = ".aux/",
-            out_dir = "",
-            continuous = 1,
-            executable = "latexmk",
-            options = {
-                "-shell-escape",
-                "-file-line-error",
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-aux-directory=.aux",
-            },
-        }
+        -- vim.g.vimtex_compiler_latexmk = {
+        --     callback = 1,
+        --     aux_dir = ".aux/",
+        --     out_dir = "",
+        --     continuous = 1,
+        --     executable = "latexmk",
+        --     options = {
+        --         "-shell-escape",
+        --         "-file-line-error",
+        --         "-synctex=1",
+        --         "-interaction=nonstopmode",
+        --         "-aux-directory=.aux",
+        --     },
+        -- }
 
         local os_name = vim.loop.os_uname().sysname
 
