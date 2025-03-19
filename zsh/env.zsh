@@ -12,7 +12,7 @@ export GHREPOS="$REPOS/github/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 export ICLOUD="$HOME/icloud"
-export SCHOOL="$CODE/telecom"
+export SCHOOL="$GHREPOS/1a_telecom"
 export VENVS_PATH="$XDG_CONFIG_HOME/.venvs"
 
 export VISUAL="nvim"
