@@ -22,7 +22,7 @@ g.mapleader = " "
 g.localmapleader = " "
 
 -- Hide the mode, since it's already in status line
-opt.showmode = false
+opt.showmode = true
 
 -- Enable break indent
 opt.breakindent = true
