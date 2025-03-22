@@ -44,7 +44,7 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- Line length marker at the 'x'-th column
-opt.colorcolumn = "80"
+-- opt.colorcolumn = "80"
 
 -- Decrease mapped sequence wait time
 opt.timeoutlen = 300
