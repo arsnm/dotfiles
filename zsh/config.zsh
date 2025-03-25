@@ -24,7 +24,7 @@
 # }
 # ssh_config
 ssh_config_1pswd(){
-    if [[ -z "$SSH_AUTH_SOCK" && -e "$HOME/.1password/agent.sock" ]]; then
+    if [[ "$SSH_AUTH_SOCK" != "$HOME/.1password/agent.sock" && -e "$HOME/.1password/agent.sock" ]]; then
         export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
     elif [[ ! -e "$HOME/.1password/agent.sock" ]]; then
         echo "1passowrd ssh-agent is not found (at least not in ~/.1passwowrd/)"
