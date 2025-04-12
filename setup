@@ -52,6 +52,7 @@ ln -sfn "$PWD/ghostty" "$XDG_CONFIG_HOME/ghostty"
 ln -sfn "$PWD/hypr" "$XDG_CONFIG_HOME/hypr"
 ln -sfn "$PWD/git" "$XDG_CONFIG_HOME/git"
 ln -sfn "$PWD/latexmk" "$XDG_CONFIG_HOME/latexmk"
+ln -sfn "$PWD/.template" "$HOME/.template"
 
 # check for os system
 unameOut="$(uname -s)"
