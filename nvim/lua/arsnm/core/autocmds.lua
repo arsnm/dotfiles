@@ -10,17 +10,31 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Change options for Markdown files
 local function setup_markdown_options()
-    vim.opt.textwidth = 90
-    vim.opt.wrap = true
-    vim.opt.linebreak = true
+    vim.bo.textwidth = 90
+    vim.wo.wrap = true
+    vim.wo.linebreak = true
     vim.opt.display:append("truncate")
+end
+
+local function reset_markdown_options()
+    vim.bo.textwidth = 0
+    vim.wo.wrap = false
+    vim.wo.linebreak = false
     vim.wo.colorcolumn = ""
+    vim.opt.display:remove("truncate")
 end
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown" },
     callback = function()
         setup_markdown_options()
+    end,
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+    pattern = { "*.md" },
+    callback = function()
+        reset_markdown_options()
     end,
 })
 
