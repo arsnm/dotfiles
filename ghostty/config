@@ -1,6 +1,6 @@
 # Ghostty config
 
-window-decoration = false
+window-decoration = true
 theme = gruber-darker
 shell-integration-features = no-cursor,sudo,no-title
 cursor-style = block
@@ -54,3 +54,4 @@ keybind = ctrl+a>e=equalize_splits
 
 # other
 copy-on-select = clipboard
+no-clipboard-copy
