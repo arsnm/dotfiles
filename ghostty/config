@@ -51,7 +51,3 @@ keybind = ctrl+a>l=goto_split:right
 keybind = ctrl+a>z=toggle_split_zoom
 
 keybind = ctrl+a>e=equalize_splits
-
-# other
-copy-on-select = clipboard
-no-clipboard-copy
