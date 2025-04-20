@@ -10,6 +10,7 @@ alias scripts="cd $SCRIPTS"
 alias school="cd $SCHOOL"
 alias dot="cd $DOTFILES"
 alias repos="cd $REPOS"
+alias glabtelecom="cd $REPOS/gitlab/telecom-paris"
 alias c="clear"
 
 #ls
