@@ -1,0 +1,37 @@
+* {
+  font-family: "Iosevka", sans-serif;
+  font-size: 12px;
+  background-color: #222222;
+  color: #9b8d7f;
+}
+
+#workspaces {
+  margin: 0 10px;
+}
+
+#workspaces button {
+  padding: 1px 2px;
+  background: transparent;
+  color: #4c7899;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+#workspaces button.focused {
+  background: #4c7899;
+  color: #4c7899;
+  border-color: #4c7899;
+}
+
+#workspaces button.urgent {
+  background: #e06c75;
+  color: white;
+  border-color: #e06c75;
+}
+
+#custom-cpu,
+#custom-memory,
+#custom-volume,
+#custom-time {
+  padding: 0 0px;
+}

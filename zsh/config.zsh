@@ -74,3 +74,5 @@ source $XDG_CONFIG_HOME/zsh/omz.zsh
 source $XDG_CONFIG_HOME/zsh/env.zsh
 source $XDG_CONFIG_HOME/zsh/aliases.zsh
 source $XDG_CONFIG_HOME/zsh/functions.zsh
+
+neofetch
