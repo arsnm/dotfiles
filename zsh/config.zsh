@@ -69,6 +69,9 @@ check_pyenv
 # opam configuration
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
+# influxdb configuration
+export PATH="$PATH:/Users/arsnm/.influxdb/"
+
 # add all other configuration files
 source $XDG_CONFIG_HOME/zsh/omz.zsh
 source $XDG_CONFIG_HOME/zsh/env.zsh
