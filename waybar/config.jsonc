@@ -1,0 +1,44 @@
+{
+  "layer": "top",
+  "position": "bottom",
+
+  "modules-left": [
+    "sway/workspaces"
+  ],
+  "modules-right": [
+    "custom/cpu",
+    "custom/memory",
+    "custom/volume",
+    "custom/time"
+  ],
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "format": "{}",
+    "on-click": "swaymsg workspace {}"
+  },
+
+  "custom/cpu": {
+    "format": "cpu {}%::",
+    "exec": "~/.config/waybar/scripts/cpu.sh",
+    "interval": 5
+  },
+
+  "custom/memory": {
+    "format": "mem {}::",
+    "exec": "~/.config/waybar/scripts/memory.sh",
+    "interval": 10
+  },
+
+  "custom/volume": {
+    "format": "vol {}::",
+    "exec": "~/.config/waybar/scripts/volume.sh",
+    "interval": 1
+  },
+
+  "custom/time": {
+    "format": "{}",
+    "exec": "date '+%Y-%m-%d %H:%M:%S'",
+    "interval": 5
+  }
+}
