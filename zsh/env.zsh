@@ -5,7 +5,7 @@
 export BROWSER="chrome"
 
 # directories
-export CODE="$HOME/code"
+export CODE="$HOME/Programming"
 export REPOS="$CODE/repos"
 export GITUSER="arsnm"
 export GHREPOS="$REPOS/github/$GITUSER"

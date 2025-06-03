@@ -25,7 +25,7 @@ format = "@[$hostname]($style)"  # Show the full hostname after '@'
 
 # Directory section
 [directory]
-truncation_length = 1  # Show only the last directory
+truncation_length = 2  # Show only the last directory
 style = "magenta"  # Purple/magenta color for the directory
 
 # Git branch section

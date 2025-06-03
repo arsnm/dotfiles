@@ -3,6 +3,12 @@
     name = arsnm
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIwtjIZEs+PR+Gpf4AUxJ51tcHwZLJFTHhkw4Z4obKem
 
+[init]
+    defaultBranch = main
+
+[color]
+    ui = auto
+
 [core]
     editor = nvim
 
