@@ -53,7 +53,8 @@ ln -sfn "$PWD/hypr" "$XDG_CONFIG_HOME/hypr"
 ln -sfn "$PWD/git" "$XDG_CONFIG_HOME/git"
 ln -sfn "$PWD/latexmk" "$XDG_CONFIG_HOME/latexmk"
 ln -sfn "$PWD/waybar" "$XDG_CONFIG_HOME/waybar"
-ln -sfn "$PWD/sway" "$XDG_CONFIG_HOME/sway"
+ln -sfn "$PWD/wofi" "$XDG_CONFIG_HOME/wofi"
+
 ln -sfn "$PWD/.template" "$HOME/.template"
 
 # check for os system

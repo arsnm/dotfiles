@@ -1,2 +1,1 @@
-require("arsnm.core")
-require("arsnm.lazy")
+require("arsnm")

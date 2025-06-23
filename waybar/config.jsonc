@@ -3,12 +3,14 @@
   "position": "bottom",
 
   "modules-left": [
-    "sway/workspaces"
+    "hyprland/workspaces"
   ],
+  "modules-center":[],
   "modules-right": [
+    "tray",
     "custom/cpu",
     "custom/memory",
-    "custom/volume",
+    //"custom/volume",
     "custom/time"
   ],
 
@@ -19,20 +21,20 @@
   },
 
   "custom/cpu": {
-    "format": "cpu {}%::",
+    "format": "cpu {}% :: ",
     "exec": "~/.config/waybar/scripts/cpu.sh",
     "interval": 5
   },
 
   "custom/memory": {
-    "format": "mem {}::",
+    "format": "mem {} :: ",
     "exec": "~/.config/waybar/scripts/memory.sh",
     "interval": 10
   },
 
   "custom/volume": {
-    "format": "vol {}::",
-    "exec": "~/.config/waybar/scripts/volume.sh",
+    "format": "vol {} :: ",
+    //"exec": "~/.config/waybar/scripts/volume.sh",
     "interval": 1
   },
 

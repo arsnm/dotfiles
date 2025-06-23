@@ -1,0 +1,15 @@
+width=320
+height=300
+location=center
+show=drun
+prompt=...
+filter_rate=100
+allow_markup=true
+no_actions=true
+halign=fill
+orientation=vertical
+content_halign=fill
+insensitive=true
+layer=top
+key_up=Shift-P
+key_down=Shift-N
