@@ -11,13 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "arsnm.plugins" }, { import = "arsnm.plugins.lsp" } }, {
-    checker = {
-        enabled = true,
-        notify = false,
-    },
-    change_detection = {
-        notify = false,
-    },
+require("lazy").setup({
+    spec = "arsnm.plugins",
+    change_detection = { notify = false }
 })
-print("using arsnm profile")
