@@ -1,4 +1,5 @@
-require("arsnm.lazy")
 require("arsnm.options")
+require("arsnm.lazy")
 require("arsnm.keymaps")
 require("arsnm.autocmds")
+require("arsnm.lsp")

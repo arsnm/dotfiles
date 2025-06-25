@@ -8,7 +8,7 @@ return {
             formatters_by_ft = {
                 ocaml = { "ocamlformat" },
                 lua = { "stylua" },
-                python = { "black" },
+                python = { "isort"", "black" },
             },
             formatters = {
                 stylua = {
