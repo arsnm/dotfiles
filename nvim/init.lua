@@ -39,6 +39,11 @@ map("n", "J", "mzJ`z", { desc = "Join the current line with the next" })
 
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
+map('n', '<C-u>', '<C-u>zz')
+map('n', '<C-d>', '<C-d>zz')
+map('n', 'G', 'Gzz')
+
+map('n', ':', 'q:i')
 
 map('n', '<leader>ll', function()
     vim.diagnostic.setloclist({ open = false })
@@ -64,3 +69,8 @@ require('colors')
 
 vim.o.statusline = "%{%v:lua.require'statusline'.statusline()%}"
 vim.o.tabline = "%!v:lua.require'statusline'.tabline()"
+
+
+-- vim.provider
+vim.g.python3_host_prog = vim.env.VENVS_PATH .. "/nvim/bin/python"
+
