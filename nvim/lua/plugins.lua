@@ -8,6 +8,7 @@ vim.pack.add({
     { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("*")},
     { src = "https://github.com/m4xshen/autoclose.nvim" },
     { src = "https://github.com/rafamadriz/friendly-snippets" },
+    { src = "https://github.com/norcalli/nvim-colorizer.lua" },
 })
 
 local update_file = vim.fn.stdpath("config") .. "/last_update.txt"
@@ -83,6 +84,8 @@ vim.api.nvim_create_user_command("ToggleBufCompletion", function()
 end, {})
 
 require("autoclose").setup()
+
+require'colorizer'.setup()
 
 local map = vim.keymap.set
 

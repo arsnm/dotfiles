@@ -10,7 +10,7 @@
     "tray",
     "custom/cpu",
     "custom/memory",
-    //"custom/volume",
+    "custom/volume",
     "custom/time"
   ],
 

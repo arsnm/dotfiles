@@ -1,37 +1,162 @@
-* {
-  font-family: "Iosevka", sans-serif;
+/* === Base Waybar Styling ================================================= */
+
+waybar * {
+  border: 2px;
+  border-radius: 4px;
+  min-height: 0;
   font-size: 12px;
-  background-color: #181818;
-  color: #9b8d7f;
 }
 
+#waybar {
+  font-family: "JetBrainsMono Nerd Font Mono";
+  font-size: 14px;
+  background-color: #181818;
+  border-radius: 2px;
+  opacity: 0.95;
+}
+
+window#waybar {
+  background: #181818;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  color: #ffdd33;
+  border: 1px solid #ffdd33;
+  border-left: 1px solid #ffdd33;
+  border-right: 1px solid #ffdd33;
+}
+
+
+/* === Workspaces ========================================================== */
+
 #workspaces {
-  margin: 0 10px;
+  background-color: transparent;
+  padding-left: 40px;
 }
 
 #workspaces button {
-  padding: 1px 2px;
-  background: transparent;
-  color: #4c7899;
-  border: 1px solid transparent;
+  all: initial;
+  min-width: 0;
+  box-shadow: inherit;
+  padding: 2px 4px;
+  margin: 0;
   border-radius: 4px;
+  background-color: #181818;
+  color: #ffdd33;
 }
 
-#workspaces button.focused {
-  background: #4c7899;
-  color: #4c7899;
-  border-color: #4c7899;
+#workspaces button.active {
+  color: #f43841;
+  background-color: #181818;
 }
 
-#workspaces button.urgent {
-  background: #e06c75;
-  color: white;
-  border-color: #e06c75;
+#workspaces button:hover {
+  color: #73c936;
+  background-color: #181818;
 }
 
-#custom-cpu,
-#custom-memory,
+
+/* === Default Module Container Styling ==================================== */
+
+#custom-microphone,
+#bluetooth,
+#custom-bluetooth,
 #custom-volume,
-#custom-time {
-  padding: 0 0px;
+#custom-power,
+#network,
+#battery,
+#backlight,
+#clock,
+#tray {
+  padding: 1px 3px;
+  margin: 4px 4px;
+  background-color: #181818;
 }
+
+
+/* === Audio ============================================================== */
+
+#pulseaudio.muted {
+  color: #f43841;
+}
+
+
+/* === Bluetooth =========================================================== */
+
+#bluetooth.disabled {
+  color: #f43841;
+}
+
+#custom-bluetooth {
+  color: #ffdd33;
+  transition: color 0.2s ease-in-out;
+}
+
+
+/* === Network ============================================================= */
+
+#network.disconnected {
+  color: #f43841;
+}
+
+
+/* === Clock =============================================================== */
+
+#clock {
+  font-weight: bold; 
+  font-size: 12px;
+  color: #96a6c8;
+}
+
+/* === Custom Workspace Labels ============================================= */
+
+#custom-work-left,
+#custom-work-right {
+  padding: 6px 6px;
+  margin: 6px 3px;
+}
+
+#custom-workspace-1:hover,
+#custom-workspace-2:hover,
+#custom-workspace-3:hover,
+#custom-workspace-4:hover {
+  color: #73c936;
+  transition: all 0.2s ease-in-out;
+}
+
+
+
+/* === Hover Effects ======================================================= */
+/* Unified look for all interactive modules                                */
+
+#custom-microphone:hover,
+#custom-volume:hover,
+#pulseaudio:hover,
+#network:hover,
+#bluetooth:hover,
+#custom-bluetooth:hover,
+#custom-power:hover,
+#custom-battery:hover,
+#clock:hover,
+#tray:hover {
+  background-color: #282828;
+  padding: 2px 2px;
+  border: 1px solid #73c936;
+  border-radius: 2px;
+  color: #73c936;
+  transition: all 0.2s ease-in-out;
+}
+
+
+/* === Tooltips ============================================================ */
+
+tooltip {
+  color: #73c936;
+  background-color: #181818;
+  border: 1px solid #73c936;
+  font-weight: bold;
+}
+
+tooltip label {
+  color: #73c936;
+}
+

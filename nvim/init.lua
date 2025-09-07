@@ -14,7 +14,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.swapfile = false
-vim.opt.termguicolors = false
+vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.incsearch = true
 

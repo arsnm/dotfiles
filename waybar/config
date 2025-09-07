@@ -1,0 +1,132 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "margin-top":2,
+    "margin-bottom":2,
+    "margin-left": 2,
+    "margin-top":4,
+    "width": 1916,
+    "height": 34,
+
+    // ── Modules Layout ───────────────────────────────────────────────
+    "modules-left": [
+          "clock",
+          "custom/power",
+          "network",
+          "bluetooth",
+          "custom/microphone",
+    ],
+
+        "modules-center": [
+            "custom/workspace-1",
+            "custom/workspace-2",
+            "custom/workspace-3",
+            "custom/workspace-4",
+    ],
+
+        "modules-right": [
+            "tray",
+            "custom/volume",
+    ],
+
+    // ── Clock ────────────────────────────────────────────────────────
+    "clock": {
+        "tooltip-format": "{calendar}",
+        "format-alt": " {:%a, %d %b %Y}",
+        "format": "[ {:%I:%M:%S %p}]",
+        "interval": 5,
+    },
+
+    // ── Network ──────────────────────────────────────────────────────
+    "network": {
+        "format-wifi": "{icon}",
+        "format-icons": ["[󰤯]", "[󰤟]", "[󰤢]", "[󰤥]", "[󰤨]"],
+        "format-ethernet": "[󰈁]",
+        "format-alt": "[󱛇]",
+        "format-disconnected": "[󰖪󰈂]",
+        "tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "󰈁 {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 5,
+        "nospacing": 1
+    },
+
+    // ── Keyboard ─────────────────────────────────────────────────────
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": " {layout}"
+    },
+
+    // ── Bluetooth ────────────────────────────────────────────────────
+    "bluetooth": {
+        "format": "{icon}",
+        "format-icons": {
+          "enabled": "[]",
+          "disabled": "[󰂲]"
+        },
+        "on-click": "~/.config/waybar/scripts/bluetooth-toggle.sh",
+        "tooltip-format": "Bluetooth is {status}",
+        "interval": 5
+    },
+
+    // ── Microphone ───────────────────────────────────────────────────
+    "custom/microphone": {
+        "exec": "~/.config/waybar/scripts/mic.sh",
+        "interval": 1,
+        "tooltip": true,
+        "tooltip-format": "Mic Toggle",
+        "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle"
+    },
+
+    // ── Workspaces (custom scripts) ──────────────────────────────────
+    "custom/workspace-1": {
+        "exec": "~/.config/waybar/scripts/workspaces/workspace-1.sh",
+        "interval": 1,
+        "on-click": "hyprctl dispatch workspace 1",
+        "tooltip": "Switch to workspace 1"
+    },
+    "custom/workspace-2": {
+        "exec": "~/.config/waybar/scripts/workspaces/workspace-2.sh",
+        "interval": 1,
+        "on-click": "hyprctl dispatch workspace 2",
+        "tooltip": "Switch to workspace 2"
+    },
+    "custom/workspace-3": {
+        "exec": "~/.config/waybar/scripts/workspaces/workspace-3.sh",
+        "interval": 1,
+        "on-click": "hyprctl dispatch workspace 3",
+        "tooltip": "Switch to workspace 3"
+    },
+    "custom/workspace-4": {
+        "exec": "~/.config/waybar/scripts/workspaces/workspace-4.sh",
+        "interval": 1,
+        "on-click": "hyprctl dispatch workspace 4",
+        "tooltip": "Switch to workspace 4"
+    },
+
+    // ── Volume ───────────────────────────────────────────────────────
+    "custom/volume": {
+        "exec": "~/.config/waybar/scripts/volume.sh",
+        "return-type": "json",
+        "interval": 1,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    },
+
+    // ── Power ────────────────────────────────────────────────────────
+    "custom/power": {
+        "format": "[󰤆]",
+        "tooltip": true,
+        "tooltip-format": "Power Menu",
+        "on-click": "~/.config/waybar/scripts/powermenu.sh"
+    },
+
+    // ── Spacer ───────────────────────────────────────────────────────
+    "custom/squares": {
+        "format": " ",
+        "tooltip": false
+    }
+}
+
