@@ -58,9 +58,9 @@ autoload zmv
 # pyenv configuration
 check_pyenv() {
     if command -v pyenv &>/dev/null; then
-        export PATH=$PATH:$HOME/.pyenv/bin
+        export PATH=$HOME/.pyenv/bin:$PATH
         pyenv_executable=$(pyenv root)/shims
-        export PATH=$PATH:$pyenv_executable
+        export PATH=$pyenv_executable:$PATH
         eval "$(pyenv init -)"
     fi
     }
@@ -69,8 +69,8 @@ check_pyenv
 # opam configuration
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
-# influxdb configuration
-export PATH="$PATH:/Users/arsnm/.influxdb/"
+# custom app configuration
+export PATH=$HOME/bin:$PATH
 
 # add all other configuration files
 source $XDG_CONFIG_HOME/zsh/omz.zsh

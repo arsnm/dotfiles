@@ -1,7 +1,7 @@
 # Ghostty config
 
 window-decoration = true
-theme = gruber-darker
+theme = Gruber Darker
 shell-integration-features = no-cursor,sudo,no-title
 cursor-style = block
 adjust-cell-height = 25%
