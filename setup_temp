@@ -6,43 +6,56 @@ command_exists() {
 
 # create directories
 export XDG_CONFIG_HOME="$HOME/.config"
+mkdir -p "$XDG_CONFIG_HOME"
+mkdir -p "$HOME/Applications"
+mkdir -p "$HOME/bin"
 
 # symbolic links
 echo "Creating symbolic links..."
-ln -sfn "$PWD/.zshrc" "$HOME/.zshrc"
-ln -sfn "$PWD/git" "$XDG_CONFIG_HOME/git"
-ln -sfn "$PWD/latexmk" "$XDG_CONFIG_HOME/latexmk"
-ln -sfn "$PWD/nvim" "$XDG_CONFIG_HOME/nvim"
-ln -sfn "$PWD/tmux" "$XDG_CONFIG_HOME/tmux"
-ln -sfn "$PWD/zsh" "$XDG_CONFIG_HOME/zsh"
+ln -sfn "$PWD/git"              "$XDG_CONFIG_HOME/git"
+ln -sfn "$PWD/latexmk"          "$XDG_CONFIG_HOME/latexmk"
+ln -sfn "$PWD/nvim"             "$XDG_CONFIG_HOME/nvim"
+ln -sfn "$PWD/starship.toml"    "$XDG_CONFIG_HOME/starship.toml"
+ln -sfn "$PWD/tmux"             "$XDG_CONFIG_HOME/tmux"
+ln -sfn "$PWD/zsh"              "$XDG_CONFIG_HOME/zsh"
+ln -sfn "$PWD/.zshrc_temp"      "$HOME/.zshrc"
+ln -sfn "$PWD/.template"        "$HOME/.template"
 
-ln -sfn "$PWD/.template" "$HOME/.template"
-
-# check for os system
+# detect OS
 unameOut="$(uname -s)"
-case "${unameOut}" in
-    Linux*)     machine=Linux;;
-    Darwin*)    machine=Mac;;
-    CYGWIN*)    machine=Cygwin;;
-    MINGW*)     machine=MinGw;;
-    *)          machine="UNKNOWN:${unameOut}"
+case "$unameOut" in
+    Linux*)   machine=Linux ;;
+    Darwin*)  machine=Mac ;;
+    CYGWIN*)  machine=Cygwin ;;
+    MINGW*)   machine=MinGw ;;
+    *)        machine="UNKNOWN:$unameOut" ;;
 esac
 
-mkdir -p ~/Applications
-mkdir -p ~/bin
+# install Neovim locally if not present
+if ! command_exists nvim; then
+    echo "Neovim not found, installing locally..."
 
-# Installing nvim locally
-if [ "$machine" == "Linux" ]; then
-    curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz > nvim-linux-x86_64.tar.gz
-    tar xzvf ./nvim-linux-x86_64.tar.gz
-    rm nvim-linux-x86_64.tar.gz
-    mv nvim-linux-x86_64 ~/Application/nvim-linux-x86_64
-    ln -sfn "~/Applications/nvim-linux-x86_64/bin/nvim" "~/bin/nvim"
-elif [ "$machine" == "Mac" ]; then
-    curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz > nvim-macos-arm64.tar.gz
-    xattr -c ./nvim-macos-arm64.tar.gz
-    tar xzvf ./nvim-macos-arm64.tar.gz
-    rm nvim-macos-arm64.tar.gz
-    mv nvim-macos-arm64 ~/Application/nvim-macos-arm64
-    ln -sfn "~/Applications/nvim-macos-arm64/bin/nvim" "~/bin/nvim"
+    if [ "$machine" = "Linux" ]; then
+        curl -L \
+          https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz \
+          -o nvim-linux-x86_64.tar.gz
+        tar xzf nvim-linux-x86_64.tar.gz
+        rm nvim-linux-x86_64.tar.gz
+        mv nvim-linux-x86_64 "$HOME/Applications/nvim-linux-x86_64"
+        ln -sfn "$HOME/Applications/nvim-linux-x86_64/bin/nvim" "$HOME/bin/nvim"
+
+    elif [ "$machine" = "Mac" ]; then
+        curl -L \
+          https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz \
+          -o nvim-macos-arm64.tar.gz
+        xattr -c nvim-macos-arm64.tar.gz || true
+        tar xzf nvim-macos-arm64.tar.gz
+        rm nvim-macos-arm64.tar.gz
+        mv nvim-macos-arm64 "$HOME/Applications/nvim-macos-arm64"
+        ln -sfn "$HOME/Applications/nvim-macos-arm64/bin/nvim" "$HOME/bin/nvim"
+    else
+        echo "Neovim installation skipped: unsupported platform ($machine)"
+    fi
+else
+    echo "Neovim already installed, skipping."
 fi
