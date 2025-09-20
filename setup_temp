@@ -45,3 +45,4 @@ elif [ "$machine" == "Mac" ]; then
     rm nvim-macos-arm64.tar.gz
     mv nvim-macos-arm64 ~/Application/nvim-macos-arm64
     ln -sfn "~/Applications/nvim-macos-arm64/bin/nvim" "~/bin/nvim"
+fi
