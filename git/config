@@ -24,5 +24,5 @@
 [includeIf "gitdir:/home/*"]
     path = ~/.config/git/linux.config
 
-[includeIf "gitdir:~/Programming/repos/gitlab/telecom-paris/"]
+[includeIf "gitdir:~/Programming/telecom-paris/"]
     path = ~/.config/git/telecom-paris.config
