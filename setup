@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 # A setup script for my configuration
 
 # Meant to be run on every new machine i use / work on in order to have all of my
-# essential tools quickly and out of the box (should work on WSL and macOS)
+# essential tools quickly and out of the box (should work on WSL/Linux and macOS)
 
 FORMULAE=(
     git

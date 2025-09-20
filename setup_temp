@@ -1,0 +1,47 @@
+#!/bin/sh
+
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# create directories
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# symbolic links
+echo "Creating symbolic links..."
+ln -sfn "$PWD/.zshrc" "$HOME/.zshrc"
+ln -sfn "$PWD/git" "$XDG_CONFIG_HOME/git"
+ln -sfn "$PWD/latexmk" "$XDG_CONFIG_HOME/latexmk"
+ln -sfn "$PWD/nvim" "$XDG_CONFIG_HOME/nvim"
+ln -sfn "$PWD/tmux" "$XDG_CONFIG_HOME/tmux"
+ln -sfn "$PWD/zsh" "$XDG_CONFIG_HOME/zsh"
+
+ln -sfn "$PWD/.template" "$HOME/.template"
+
+# check for os system
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+mkdir -p ~/Applications
+mkdir -p ~/bin
+
+# Installing nvim locally
+if [ "$machine" == "Linux" ]; then
+    curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz > nvim-linux-x86_64.tar.gz
+    tar xzvf ./nvim-linux-x86_64.tar.gz
+    rm nvim-linux-x86_64.tar.gz
+    mv nvim-linux-x86_64 ~/Application/nvim-linux-x86_64
+    ln -sfn "~/Applications/nvim-linux-x86_64/bin/nvim" "~/bin/nvim"
+elif [ "$machine" == "Mac" ]; then
+    curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz > nvim-macos-arm64.tar.gz
+    xattr -c ./nvim-macos-arm64.tar.gz
+    tar xzvf ./nvim-macos-arm64.tar.gz
+    rm nvim-macos-arm64.tar.gz
+    mv nvim-macos-arm64 ~/Application/nvim-macos-arm64
+    ln -sfn "~/Applications/nvim-macos-arm64/bin/nvim" "~/bin/nvim"
