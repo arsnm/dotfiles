@@ -27,12 +27,12 @@ ssh_config_1pswd(){
     if [[ "$SSH_AUTH_SOCK" != "$HOME/.1password/agent.sock" && -e "$HOME/.1password/agent.sock" ]]; then
         export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
     elif [[ ! -e "$HOME/.1password/agent.sock" ]]; then
-        echo "1passowrd ssh-agent is not found (at least not in ~/.1passwowrd/)"
+        echo "1passowrd ssh-agent is not found (at least not in ~/.1password/)"
         echo "Make sure it is enabled/installed, and on macOS, that the symlink is set :"
         echo 'ln -sf "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" ~/.1password/agent.sock'
     fi
 }
-ssh_config_1pswd
+# ssh_config_1pswd
 
 # homebrew config (if on macOS)
 if [[ "$(uname)" == "Darwin" ]]; then
