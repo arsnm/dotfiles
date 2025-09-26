@@ -2,11 +2,10 @@ vim.pack.add({
     { src = "https://github.com/blazkowolf/gruber-darker.nvim" },
     { src = "https://github.com/echasnovski/mini.pick" },
     { src = "https://github.com/echasnovski/mini.icons" },
-    { src = "https://github.com/echasnovski/mini.snippets" },
+    { src = "https://github.com/m4xshen/autoclose.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
-    { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("*")},
-    { src = "https://github.com/m4xshen/autoclose.nvim" },
+    { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("*") },
     { src = "https://github.com/rafamadriz/friendly-snippets" },
     { src = "https://github.com/norcalli/nvim-colorizer.lua" },
 })
@@ -19,29 +18,21 @@ if f then
     f:close()
 end
 
-local today = os.date("%Y-%m-%d")
+local today = tostring(os.date("%Y-%m-%d"))
 local weekday_num = os.date("%w") -- 0 = Sunday, 1 = Monday, ...
 
 if weekday_num == '1' and last_update ~= today then
     vim.pack.update()
-    local f = io.open(update_file, "w")
-    if f then
-        f:write(today)
-        f:close()
+    local f_w = io.open(update_file, "w")
+    if f_w then
+        f_w:write(today)
+        f_w:close()
     end
 end
 
 require("mini.pick").setup()
 require("mini.icons").setup()
-
-local gen_loader = require("mini.snippets").gen_loader
-require("mini.snippets").setup({
-    snippets = {
-        gen_loader.from_file(vim.fn.stdpath("config") .. '/snippets/global.json'),
-        gen_loader.from_lang(),
-    }
-})
-
+require("autoclose").setup()
 
 vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { link = "Visual" })
 
@@ -75,20 +66,31 @@ require("blink.cmp").setup({
     },
     cmdline = {
         keymap = { preset = "cmdline" }
+    },
+    sources = {
+        providers = {
+            snippets = {
+                 opts = {
+                     extended_filetypes = {
+                     }
+                 }
+            }
+        }
     }
 })
 
 vim.api.nvim_create_user_command("ToggleBufCompletion", function()
     vim.b.completion = not (vim.b.completion ~= false)
-    print("Blink completion (buffer : )" .. (vim.b.completion and "enabled" or "disabled"))
+    print("Blink completion (buffer): " .. (vim.b.completion and "enabled" or "disabled"))
 end, {})
 
-require("autoclose").setup()
-
-require'colorizer'.setup()
+require('colorizer').setup()
 
 local map = vim.keymap.set
 
 map('n', '<leader>f', ':Pick files<CR>')
 map('n', '<leader>h', ':Pick help<CR>')
+map('n', '<leader>b', ':Pick buffers<CR>')
+map('n', '<leader>g', ':Pick grep_live<CR>')
 map('n', '<leader>e', ':Oil<CR>')
+

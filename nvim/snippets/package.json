@@ -1,0 +1,10 @@
+{
+  "name": "custom-snippets",
+  "contributes": {
+    "snippets": [
+      { "language": "asm", "path": "./asm.json" },
+      { "language": ["latex", "plaintex"], "path": "./latex.json" },
+      { "language": "all", "path": "./all.json" }
+    ]
+  }
+}

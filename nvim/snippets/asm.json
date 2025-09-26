@@ -1,0 +1,18 @@
+{
+  "arm_head": {
+    "prefix": "arm_head",
+    "body": [
+      ".syntax unified",
+      ".arch armv7e-m",
+      ".cpu cortex-m4",
+      "",
+      ".thumb",
+      "",
+      ".global _start",
+      "",
+      "_start:",
+      "\t"
+    ],
+    "desc": "ARM Cortex-M4 assembly header snippet"
+  }
+}
