@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # A setup script for my configuration
 
@@ -44,6 +44,7 @@ echo "Creating symbolic links..."
 ln -sfn "$PWD/.zshrc" "$HOME/.zshrc"
 ln -sfn "$PWD/aerospace" "$XDG_CONFIG_HOME/aerospace"
 ln -sfn "$PWD/alacritty" "$XDG_CONFIG_HOME/alacritty"
+ln -sfn "$PWD/dunstrc" "$XDG_CONFIG_HOME/dunstrc"
 ln -sfn "$PWD/ghostty" "$XDG_CONFIG_HOME/ghostty"
 ln -sfn "$PWD/git" "$XDG_CONFIG_HOME/git"
 ln -sfn "$PWD/hypr" "$XDG_CONFIG_HOME/hypr"
