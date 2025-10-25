@@ -10,58 +10,53 @@ waybar * {
 #waybar {
   font-family: "JetBrainsMono Nerd Font Mono";
   font-size: 14px;
-  background-color: #181818;
   border-radius: 2px;
-  opacity: 0.95;
 }
 
+
 window#waybar {
-  background: #181818;
-  transition-property: background-color;
-  transition-duration: 0.5s;
+  background-color: transparent;
   color: #ffdd33;
+}
+
+#modules-left,
+#right,
+#center {
+  background-color: #181818;
   border: 1px solid #ffdd33;
   border-left: 1px solid #ffdd33;
   border-right: 1px solid #ffdd33;
 }
 
-
 /* === Workspaces ========================================================== */
 
-#workspaces {
-  background-color: transparent;
-  padding-left: 40px;
-}
-
 #workspaces button {
-  all: initial;
-  min-width: 0;
-  box-shadow: inherit;
-  padding: 2px 4px;
+  padding: 1px 3px;
   margin: 0;
-  border-radius: 4px;
-  background-color: #181818;
   color: #ffdd33;
 }
 
 #workspaces button.active {
   color: #f43841;
-  background-color: #181818;
+  transition: all 0.2s ease-in-out;
 }
 
 #workspaces button:hover {
   color: #73c936;
-  background-color: #181818;
+  transition: all 0.2s ease-in-out;
 }
 
 
 /* === Default Module Container Styling ==================================== */
 
+#workspaces,
 #custom-microphone,
 #bluetooth,
 #custom-bluetooth,
 #custom-volume,
 #custom-power,
+#custom-keyboard,
+#hyprland-submap,
 #network,
 #battery,
 #backlight,
@@ -69,7 +64,7 @@ window#waybar {
 #tray {
   padding: 1px 3px;
   margin: 4px 4px;
-  background-color: #181818;
+  background-color: transparent;
 }
 
 
@@ -136,6 +131,8 @@ window#waybar {
 #custom-bluetooth:hover,
 #custom-power:hover,
 #custom-battery:hover,
+#custom-keyboard:hover,
+#hyprland-submap:hover,
 #clock:hover,
 #tray:hover {
   background-color: #282828;

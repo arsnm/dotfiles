@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-# ─────────────────────────────────────────────────────────────────────────────
-#  Wofi Power Menu
-#  Provides a simple system power menu integrated with Waybar.
-#  Example:
-#      ./powermenu.sh
-#      # Opens a Wofi menu with power options
-# ─────────────────────────────────────────────────────────────────────────────
+# ─── powermenu.sh ────────────────────────────────────────────────────────
+#  Description : Provides a simple system power menu integrated with Waybar
+# Usage: Called by Waybar `custom/powermenu` module when clicking on it
+# Dependencies: wofi, hyprctl (Hyprland), hyprlock (Hyprlock)
+# ─────────────────────────────────────────────────────────────────────────
 
 wofi_command="wofi --dmenu --prompt 'Power'"
 

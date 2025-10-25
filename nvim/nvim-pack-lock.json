@@ -1,0 +1,15 @@
+{
+  "plugins": {
+    "autoclose.nvim": [],
+    "blink.cmp": {
+      "version": ">=0.0.0"
+    },
+    "friendly-snippets": [],
+    "gruber-darker.nvim": [],
+    "mason.nvim": [],
+    "mini.icons": [],
+    "mini.pick": [],
+    "nvim-colorizer.lua": [],
+    "oil.nvim": []
+  }
+}
