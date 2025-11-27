@@ -15,9 +15,9 @@ alias glabtelecom="cd $REPOS/gitlab/telecom-paris"
 alias c="clear"
 
 #ls
-alias ls="ls --color=auto"
-alias ll="ls -la"
-alias la="ls -lathr"
+alias ls="lsd"
+alias ll="lsd -la"
+alias la="lsd -lathr"
 
 # finds files recursively and sorts by last modification, ignore hidden files
 alias last='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
