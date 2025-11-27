@@ -5,10 +5,16 @@
       "version": ">=0.0.0"
     },
     "friendly-snippets": [],
-    "gruber-darker.nvim": [],
+    "gruber-darker.nvim": {
+      "rev": "98a2e14"
+    },
     "mason.nvim": [],
-    "mini.icons": [],
-    "mini.pick": [],
+    "mini.icons": {
+      "rev": "ff2e4f1"
+    },
+    "mini.pick": {
+      "rev": "08a7220"
+    },
     "nvim-colorizer.lua": [],
     "oil.nvim": []
   }

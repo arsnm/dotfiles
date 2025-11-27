@@ -19,13 +19,14 @@ window#waybar {
   color: #ffdd33;
 }
 
-#modules-left,
-#right,
-#center {
+.modules-left,
+.modules-right,
+.modules-center {
   background-color: #181818;
   border: 1px solid #ffdd33;
   border-left: 1px solid #ffdd33;
   border-right: 1px solid #ffdd33;
+  border-radius: 2px;
 }
 
 /* === Workspaces ========================================================== */
@@ -150,10 +151,13 @@ tooltip {
   color: #73c936;
   background-color: #181818;
   border: 1px solid #73c936;
+  border-radius: 2px;
   font-weight: bold;
 }
 
 tooltip label {
   color: #73c936;
+  font-family: "JetBrainsMono Nerd Font Regular", monospace;
+  font-size: 16px;
+  padding: 0px; 
 }
-
