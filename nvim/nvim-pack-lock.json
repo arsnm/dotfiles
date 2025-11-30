@@ -2,20 +2,25 @@
   "plugins": {
     "autoclose.nvim": [],
     "blink.cmp": {
+      "rev": "b19413d",
       "version": ">=0.0.0"
     },
     "friendly-snippets": [],
     "gruber-darker.nvim": {
       "rev": "98a2e14"
     },
-    "mason.nvim": [],
+    "mason.nvim": {
+      "rev": "57e5a8a"
+    },
     "mini.icons": {
       "rev": "ff2e4f1"
     },
     "mini.pick": {
-      "rev": "08a7220"
+      "rev": "b435139"
     },
     "nvim-colorizer.lua": [],
-    "oil.nvim": []
+    "oil.nvim": {
+      "rev": "01cb3a8"
+    }
   }
 }
