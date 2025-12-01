@@ -33,3 +33,5 @@
 [includeIf "gitdir:/cal/"]
     path = ~/.config/git/remote_telecom.config
 
+[include]
+    path = ~/.config/git/wsl.config

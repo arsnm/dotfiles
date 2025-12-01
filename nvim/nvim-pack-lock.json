@@ -1,26 +1,41 @@
 {
   "plugins": {
-    "autoclose.nvim": [],
+    "autoclose.nvim": {
+      "rev": "3f86702b54a861a17d7994b2e32a7c648cb12fb1",
+      "src": "https://github.com/m4xshen/autoclose.nvim"
+    },
     "blink.cmp": {
-      "rev": "b19413d",
+      "rev": "b19413d214068f316c78978b08264ed1c41830ec",
+      "src": "https://github.com/saghen/blink.cmp",
       "version": ">=0.0.0"
     },
-    "friendly-snippets": [],
+    "friendly-snippets": {
+      "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
+    },
     "gruber-darker.nvim": {
-      "rev": "98a2e14"
+      "rev": "98a2e141981cbd5a194a97eae024bf55af854579",
+      "src": "https://github.com/blazkowolf/gruber-darker.nvim"
     },
     "mason.nvim": {
-      "rev": "57e5a8a"
+      "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
+      "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.icons": {
-      "rev": "ff2e4f1"
+      "rev": "ff2e4f1d29f659cc2bad0f9256f2f6195c6b2428",
+      "src": "https://github.com/echasnovski/mini.icons"
     },
     "mini.pick": {
-      "rev": "b435139"
+      "rev": "b4351399db5043a781a32699a1bde60b747f711f",
+      "src": "https://github.com/echasnovski/mini.pick"
     },
-    "nvim-colorizer.lua": [],
+    "nvim-colorizer.lua": {
+      "rev": "a065833f35a3a7cc3ef137ac88b5381da2ba302e",
+      "src": "https://github.com/norcalli/nvim-colorizer.lua"
+    },
     "oil.nvim": {
-      "rev": "01cb3a8"
+      "rev": "cbcb3f997f6f261c577b943ec94e4ef55108dd95",
+      "src": "https://github.com/stevearc/oil.nvim"
     }
   }
 }

@@ -73,7 +73,6 @@ case "${unameOut}" in
 esac
 
 #packages installation
-
 if [ "$machine" == "Mac" ]; then
     echo "Starting setup for mac..."
 
