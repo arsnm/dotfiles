@@ -30,3 +30,6 @@
 [includeIf "hasconfig:remote.*.url:git@gitlab.enst.fr:*/**"]
     path = ~/.config/git/telecom-paris.config
 
+[includeIf "gitdir:/cal/"]
+    path = ~/.config/git/remote_telecom.config
+
