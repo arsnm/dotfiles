@@ -1,5 +1,9 @@
-#!/bin/bash
-# workspace-2.sh — highlight workspace 2 if active
+#!/usr/bin/env bash
+# ── workspace-2.sh ──────────────────────────────────────────
+# Description: Highlight workspace 2 if active
+# Usage: Called by Waybar `custom/workspace-2` module every 1s
+# Dependencies: hyprctl (Hyprland)
+# ────────────────────────────────────────────────────────────
 
 active=$(hyprctl activeworkspace -j | jq '.id')
 

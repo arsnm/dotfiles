@@ -6,7 +6,7 @@
     "margin-left": 2,
     "margin-top":4,
     "width": 1916,
-    "height": 34,
+    "height": 38,
 
     // ── Modules Layout ───────────────────────────────────────────────
     "modules-left": [
@@ -14,19 +14,22 @@
           "custom/power",
           "network",
           "bluetooth",
-          "custom/microphone",
+          "custom/microphone"
     ],
 
         "modules-center": [
-            "custom/workspace-1",
-            "custom/workspace-2",
-            "custom/workspace-3",
-            "custom/workspace-4",
+            "hyprland/workspaces"
+            // "custom/workspace-1",
+            // "custom/workspace-2",
+            // "custom/workspace-3",
+            // "custom/workspace-4"
     ],
 
         "modules-right": [
+            "hyprland/submap",
+            "custom/keyboard",
             "tray",
-            "custom/volume",
+            "custom/volume"
     ],
 
     // ── Clock ────────────────────────────────────────────────────────
@@ -34,7 +37,7 @@
         "tooltip-format": "{calendar}",
         "format-alt": " {:%a, %d %b %Y}",
         "format": "[ {:%I:%M:%S %p}]",
-        "interval": 5,
+        "interval": 5
     },
 
     // ── Network ──────────────────────────────────────────────────────
@@ -51,11 +54,11 @@
         "nospacing": 1
     },
 
-    // ── Keyboard ─────────────────────────────────────────────────────
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": " {layout}"
+    // ── Keyboard (custom script) ──────────────────────────────────────
+    "custom/keyboard": {
+        "exec": "~/.config/waybar/scripts/keyboard-status.sh",
+        "return-type": "json",
+        "interval": 1
     },
 
     // ── Bluetooth ────────────────────────────────────────────────────
@@ -79,6 +82,24 @@
         "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle"
     },
 
+    // ── Workspaces (Hyprland) ────────────────────────────────────────
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "on-click": "activate",
+        "format": "[{icon}]",
+        "format-icons": {
+                  "1": "α",
+                  "2": "β",
+                  "3": "γ",
+                  "4": "δ",
+                  "5": "ε",
+                  "6": "ζ",
+                  "7": "η",
+                  "8": "θ",
+                  "urgent": ""
+        },
+        "persistent-workspaces": { "*": 4 }
+    },
     // ── Workspaces (custom scripts) ──────────────────────────────────
     "custom/workspace-1": {
         "exec": "~/.config/waybar/scripts/workspaces/workspace-1.sh",
