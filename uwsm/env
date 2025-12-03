@@ -1,5 +1,4 @@
 export XCURSOR_SIZE = 8
-export GTK_IM_MODULE = simple
 export GTK_THEME = Adwaita:dark
 export QT_QPA_PLATFORMTHEME=qt6ct
 export QT_STYLE_OVERRIDE=kvantum
