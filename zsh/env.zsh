@@ -12,7 +12,7 @@ export DOTFILES="$CODE/dotfiles"
 export TEMPLATE="$HOME/.template"
 export SCRIPTS="$DOTFILES/scripts"
 export ICLOUD="$HOME/icloud"
-export SCHOOL="$CODE/1a_telecom"
+export SCHOOL="$CODE/2a_telecom"
 export VENVS_PATH="$XDG_CONFIG_HOME/.venvs"
 
 export VISUAL="nvim"

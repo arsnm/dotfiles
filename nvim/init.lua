@@ -39,6 +39,9 @@ map({ 'n', 'v', 'x' }, '<leader>U', ':sf #<CR>')
 
 map('n', '<leader>nh', ':nohl<CR>')
 
+map('n', 'j', 'gj', {noremap = true, silent = true})
+map('n', 'k', 'gk', {noremap = true, silent = true})
+
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 map("n", "J", "mzJ`z", { desc = "Join the current line with the next" })

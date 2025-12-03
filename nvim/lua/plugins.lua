@@ -5,7 +5,8 @@ vim.pack.add({
     { src = "https://github.com/m4xshen/autoclose.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
-    { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("*") },
+    { src = "https://github.com/saghen/blink.cmp",             version = vim.version.range("*") },
+    { src = "https://github.com/L3MON4D3/LuaSnip" },
     { src = "https://github.com/rafamadriz/friendly-snippets" },
     { src = "https://github.com/norcalli/nvim-colorizer.lua" },
 })
@@ -67,16 +68,10 @@ require("blink.cmp").setup({
     cmdline = {
         keymap = { preset = "cmdline" }
     },
+    snippets = { preset = 'luasnip' },
     sources = {
-        providers = {
-            snippets = {
-                 opts = {
-                     extended_filetypes = {
-                     }
-                 }
-            }
-        }
-    }
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+    },
 })
 
 vim.api.nvim_create_user_command("ToggleBufCompletion", function()
@@ -94,3 +89,9 @@ map('n', '<leader>b', ':Pick buffers<CR>')
 map('n', '<leader>g', ':Pick grep_live<CR>')
 map('n', '<leader>e', ':Oil<CR>')
 
+local ls = require('luasnip')
+ls.setup()
+ls.filetype_extend('cpp', { 'c' })
+require('luasnip.loaders.from_vscode').lazy_load()
+require('luasnip.loaders.from_vscode').lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+require('luasnip.loaders.from_lua').lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
