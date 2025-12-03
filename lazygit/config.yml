@@ -1,0 +1,4 @@
+# Config related to commits
+commit:
+  signOff: true
+  autoWrapWidth: 80
