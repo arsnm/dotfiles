@@ -16,38 +16,38 @@ mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
 
 # keybindings
-keybind = ctrl+n>r=reload_config
-keybind = ctrl+n>x=close_surface
+keybind = ctrl+/>r=reload_config
+keybind = ctrl+/>x=close_surface
 
-keybind = ctrl+n>n=new_window
+keybind = ctrl+/>n=new_window
 
 # tabs
-keybind = ctrl+n>c=new_tab
-keybind = ctrl+n>shift+l=next_tab
-keybind = ctrl+n>shift+h=previous_tab
-keybind = ctrl+n>comma=move_tab:-1
-keybind = ctrl+n>period=move_tab:1
+keybind = ctrl+/>c=new_tab
+keybind = ctrl+/>shift+l=next_tab
+keybind = ctrl+/>shift+h=previous_tab
+keybind = ctrl+/>comma=move_tab:-1
+keybind = ctrl+/>period=move_tab:1
 
 # quick tab switch
-keybind = ctrl+n>1=goto_tab:1
-keybind = ctrl+n>2=goto_tab:2
-keybind = ctrl+n>3=goto_tab:3
-keybind = ctrl+n>4=goto_tab:4
-keybind = ctrl+n>5=goto_tab:5
-keybind = ctrl+n>6=goto_tab:6
-keybind = ctrl+n>7=goto_tab:7
-keybind = ctrl+n>8=goto_tab:8
-keybind = ctrl+n>9=goto_tab:9
+keybind = ctrl+/>1=goto_tab:1
+keybind = ctrl+/>2=goto_tab:2
+keybind = ctrl+/>3=goto_tab:3
+keybind = ctrl+/>4=goto_tab:4
+keybind = ctrl+/>5=goto_tab:5
+keybind = ctrl+/>6=goto_tab:6
+keybind = ctrl+/>7=goto_tab:7
+keybind = ctrl+/>8=goto_tab:8
+keybind = ctrl+/>9=goto_tab:9
 
 # split
-keybind = ctrl+n>\=new_split:right
-keybind = ctrl+n>-=new_split:down
+keybind = ctrl+/>\=new_split:right
+keybind = ctrl+/>-=new_split:down
 
-keybind = ctrl+n>j=goto_split:bottom
-keybind = ctrl+n>k=goto_split:top
-keybind = ctrl+n>h=goto_split:left
-keybind = ctrl+n>l=goto_split:right
+keybind = ctrl+/>j=goto_split:bottom
+keybind = ctrl+/>k=goto_split:top
+keybind = ctrl+/>h=goto_split:left
+keybind = ctrl+/>l=goto_split:right
 
-keybind = ctrl+n>z=toggle_split_zoom
+keybind = ctrl+/>z=toggle_split_zoom
 
-keybind = ctrl+n>e=equalize_splits
+keybind = ctrl+/>e=equalize_splits
