@@ -8,7 +8,9 @@ vim.pack.add({
     { src = "https://github.com/saghen/blink.cmp",             version = vim.version.range("*") },
     { src = "https://github.com/L3MON4D3/LuaSnip" },
     { src = "https://github.com/rafamadriz/friendly-snippets" },
-    { src = "https://github.com/norcalli/nvim-colorizer.lua" },
+    { src = "https://github.com/catgoose/nvim-colorizer.lua" },
+    { src = "https://github.com/zbirenbaum/copilot.lua" },
+    -- { src = "https://github.com/github/copilot.vim" },
 })
 
 local update_file = vim.fn.stdpath("config") .. "/last_update.txt"
@@ -95,3 +97,31 @@ ls.filetype_extend('cpp', { 'c' })
 require('luasnip.loaders.from_vscode').lazy_load()
 require('luasnip.loaders.from_vscode').lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
 require('luasnip.loaders.from_lua').lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+
+require("copilot").setup({
+    filetypes = {
+        c = true,
+        cpp = true,
+        html = true,
+        python = true,
+        java = true,
+        lua = true,
+        systemverilog = true,
+        css = true,
+        json = true,
+        javascript = true,
+        ["*"] = false,
+    },
+    panel = {
+        enabled = false,
+    },
+    suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+            accept = "<C-j>",
+            prev = false,
+            next = false,
+        },
+    },
+})

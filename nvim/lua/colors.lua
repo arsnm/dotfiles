@@ -22,4 +22,3 @@ vim.api.nvim_set_hl(0, "GruberDarkerDarkNiagara", { fg = "#6d80a8"}) -- needed t
 
 local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false})
 vim.api.nvim_set_hl(0, "Winbar", { link = "GruberDarkerYellowBold" })
-
