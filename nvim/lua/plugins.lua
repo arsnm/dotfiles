@@ -6,6 +6,7 @@ vim.pack.add({
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/saghen/blink.cmp",             version = vim.version.range("*") },
+    { src = "https://github.com/stevearc/conform.nvim" },
     { src = "https://github.com/L3MON4D3/LuaSnip" },
     { src = "https://github.com/rafamadriz/friendly-snippets" },
     { src = "https://github.com/catgoose/nvim-colorizer.lua" },
@@ -81,9 +82,21 @@ vim.api.nvim_create_user_command("ToggleBufCompletion", function()
     print("Blink completion (buffer): " .. (vim.b.completion and "enabled" or "disabled"))
 end, {})
 
-require('colorizer').setup()
+require("conform").setup({
+    formatters_by_ft = {
+        python = { "black" },
+        c = { "clang_format" },
+        cpp = { "clang_format" },
+    },
+})
 
 local map = vim.keymap.set
+
+map('n', '<leader>lf', function()
+    require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "Format file" })
+
+require('colorizer').setup()
 
 map('n', '<leader>f', ':Pick files<CR>')
 map('n', '<leader>h', ':Pick help<CR>')

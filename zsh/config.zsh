@@ -43,7 +43,7 @@ fi
 check_texlive() {
     if [[ -d "/usr/local/texlive" ]]; then
         if [[ "$(uname)" == "Linux" ]]; then
-            export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
+            export PATH=/usr/local/texlive/2025/bin/x86_64-linux:$PATH
         elif [[ "$(uname)" == "Darwin" ]]; then 
             export PATH=/usr/local/texlive/2024/bin/universal-darwin:$PATH
         fi
