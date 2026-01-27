@@ -110,6 +110,7 @@ require("copilot").setup({
         css = true,
         json = true,
         javascript = true,
+        tex = true,
         ["*"] = false,
     },
     panel = {
