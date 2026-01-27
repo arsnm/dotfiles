@@ -1,0 +1,24 @@
+# =============================================================================
+# TEX-RELATED
+# =============================================================================
+AUXDIR    = .aux
+TEXCC    := latexmk
+# -pdflua tells latexmk to use lualatex
+TEXFLAGS := -pdflua -auxdir=$(AUXDIR) -shell-escape -file-line-error \
+            -interaction=nonstopmode -synctex=1
+
+TEX_SRCS    := $(wildcard *.tex)
+TEX_TARGETS := $(patsubst %.tex, %.pdf, $(TEX_SRCS))
+
+.PHONY: all clean_aux clean_tex
+
+all: $(TEX_TARGETS)
+
+%.pdf: %.tex
+	$(TEXCC) $(TEXFLAGS) $<
+
+clean_aux:
+	rm -fr $(AUXDIR)
+
+clean_tex: clean_aux
+	rm -f $(TEX_TARGETS)
