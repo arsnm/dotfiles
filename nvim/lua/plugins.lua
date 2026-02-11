@@ -88,6 +88,7 @@ require("conform").setup({
         c = { "clang_format" },
         cpp = { "clang_format" },
         java = { "clang_format" },
+        rust = { "rustfmt" },
     },
 })
 
