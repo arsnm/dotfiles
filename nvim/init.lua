@@ -18,6 +18,10 @@ vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.incsearch = true
 
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.scrolloff = 10
+
 vim.o.wildmenu = false
 vim.o.wildoptions = ""
 
@@ -75,6 +79,8 @@ require('plugins')
 require('lspconfig')
 
 require('colors')
+
+require('autocmds')
 
 vim.o.statusline = "%{%v:lua.require'statusline'.statusline()%}"
 vim.o.tabline = "%!v:lua.require'statusline'.tabline()"
