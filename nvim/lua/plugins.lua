@@ -87,6 +87,7 @@ require("conform").setup({
         python = { "black" },
         c = { "clang_format" },
         cpp = { "clang_format" },
+        java = { "clang_format" },
     },
 })
 
