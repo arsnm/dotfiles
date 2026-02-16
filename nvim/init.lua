@@ -26,7 +26,7 @@ vim.o.wildmenu = false
 vim.o.wildoptions = ""
 
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣'}
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 local map = vim.keymap.set
 vim.g.mapleader = " "
@@ -43,8 +43,8 @@ map({ 'n', 'v', 'x' }, '<leader>U', ':sf #<CR>')
 
 map('n', '<leader>nh', ':nohl<CR>')
 
-map('n', 'j', 'gj', {noremap = true, silent = true})
-map('n', 'k', 'gk', {noremap = true, silent = true})
+map('n', 'j', 'gj', { noremap = true, silent = true })
+map('n', 'k', 'gk', { noremap = true, silent = true })
 
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
@@ -74,6 +74,10 @@ map('n', '<leader>qf', function()
 end
 )
 
+map('t', '<C-Esc>', [[<C-\><C-n>]], {
+    noremap = true, silent = true, desc = "Exit terminal mode"
+})
+
 require('plugins')
 
 require('lspconfig')
@@ -82,9 +86,10 @@ require('colors')
 
 require('autocmds')
 
+require('customs')
+
 vim.o.statusline = "%{%v:lua.require'statusline'.statusline()%}"
 vim.o.tabline = "%!v:lua.require'statusline'.tabline()"
 
 -- vim.provider
 vim.g.python3_host_prog = vim.env.VENVS_PATH .. "/nvim/bin/python"
-

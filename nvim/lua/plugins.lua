@@ -89,7 +89,17 @@ require("conform").setup({
         cpp = { "clang_format" },
         java = { "clang_format" },
         rust = { "rustfmt" },
+        html = { "prettierd" },
+        css = { "prettierd" },
+        json = { "prettierd" },
+        javascript = { "prettierd" },
     },
+
+    formatters = {
+        prettierd = {
+            prepand_args = { "--tab-width", "4" },
+        }
+    }
 })
 
 local map = vim.keymap.set
