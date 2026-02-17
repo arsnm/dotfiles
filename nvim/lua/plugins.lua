@@ -85,9 +85,9 @@ end, {})
 require("conform").setup({
     formatters_by_ft = {
         python = { "black" },
-        c = { "clang_format" },
-        cpp = { "clang_format" },
-        java = { "clang_format" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        java = { "clang-format" },
         rust = { "rustfmt" },
         html = { "prettierd" },
         css = { "prettierd" },
@@ -97,7 +97,10 @@ require("conform").setup({
 
     formatters = {
         prettierd = {
-            prepand_args = { "--tab-width", "4" },
+            prepend_args = { "--tab-width", "4" },
+        },
+        ["clang-format"] = {
+            prepend_args = { "--style={BasedOnStyle: LLVM, IndentWidth: 4, UseTab: Never}" },
         }
     }
 })
