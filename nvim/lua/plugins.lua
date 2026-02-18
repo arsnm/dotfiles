@@ -89,14 +89,14 @@ require("conform").setup({
         cpp = { "clang-format" },
         java = { "clang-format" },
         rust = { "rustfmt" },
-        html = { "prettierd" },
-        css = { "prettierd" },
-        json = { "prettierd" },
-        javascript = { "prettierd" },
+        html = { "prettier" },
+        css = { "prettier" },
+        json = { "prettier" },
+        javascript = { "prettier" },
     },
 
     formatters = {
-        prettierd = {
+        prettier = {
             prepend_args = { "--tab-width", "4" },
         },
         ["clang-format"] = {
