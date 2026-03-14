@@ -10,3 +10,12 @@ vim.api.nvim_create_autocmd("FileType", {
         end, { desc = "Run the current Rust project" })
     end,
 })
+
+-- Highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank()
+        vim.cmd("echo 'Yanked to register: ' . v:event.regname")
+    end,
+})
