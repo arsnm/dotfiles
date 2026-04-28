@@ -34,7 +34,7 @@ vim.g.mapleader = " "
 
 map('n', '<leader>o', ':update<CR> :source<CR>')
 map('n', '<leader>w', ':write<CR>')
-map('n', '<leader>m', ':make<CR>')
+map('n', '<leader>m', ':w | silent make! | cw<CR>')
 map({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
 map({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
 map({ 'n', 'v', 'x' }, '<leader>p', '"+p')
