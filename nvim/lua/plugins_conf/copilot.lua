@@ -15,7 +15,14 @@ require("copilot").setup({
         ["*"] = false,
     },
     panel = {
-        enabled = false,
+        enabled = true,
+        keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<M-CR>",
+        },
     },
     suggestion = {
         enabled = true,
