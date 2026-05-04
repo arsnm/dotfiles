@@ -49,3 +49,7 @@ alias ohmyzsh="mate ~/.oh-my-zsh"
 alias jupyternb="jupyter lab --no-browser"
 
 alias vpnt="sudo openvpn $XDG_CONFIG_HOME/openvpn/telecom-paris.ovpn"
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    alias xdg-open="open"
+fi

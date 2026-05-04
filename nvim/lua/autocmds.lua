@@ -21,18 +21,37 @@ vim.api.nvim_create_autocmd("FileType", {
             return
         end
         vim.cmd("compiler typst")
-        vim.opt_local.makeprg = "typst compile --diagnostic-format short %:S"
+        vim.opt_local.makeprg = "typst compile --root . %:S"
 
         -- Open the compiled PDF
-        vim.api.nvim_buf_create_user_command(0, "OpenTypst", function ()
+        vim.api.nvim_buf_create_user_command(0, "Otypst", function ()
             local pdf_path = vim.fn.expand("%:p:r") .. ".pdf"
             if vim.fn.filereadable(pdf_path) == 1 then
-                vim.fn.jobstart({ "xdg-open", pdf_path }, { detach = true })
+                if vim.fn.has("macunix") == 1 then
+                    vim.fn.jobstart({ "open", pdf_path }, { detach = true })
+                elseif vim.fn.has("linux") == 1 then 
+                    vim.fn.jobstart({ "xdg-open", pdf_path }, { detach = true })
+                end
                 print("Opened PDF: " .. pdf_path)
             else
                 print("PDF not found: " .. pdf_path)
             end
         end, { desc = "Open the compiled Typst PDF in the default PDF viewer" })
+
+        -- Start to watch the file
+        vim.api.nvim_buf_create_user_command(0, "Wtypst", function ()
+            local file_path = vim.fn.expand("%:p")
+            if vim.fn.filereadable(file_path) == 1 then
+                local original_win = vim.api.nvim_get_current_win()
+                vim.cmd("botright 20vsplit")
+                vim.cmd("term typst watch --root . " .. file_path)
+                print("Started watching: " .. file_path)
+                -- return to original window
+                vim.api.nvim_set_current_win(original_win)
+            else
+                print("File not found: " .. file_path)
+            end
+        end, { desc = "Start watching the current Typst file for changes" })
     end,
 })
 
