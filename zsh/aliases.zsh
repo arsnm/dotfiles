@@ -25,7 +25,7 @@ alias last='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
 alias sv="sudoedit"
 alias sk="killall ssh-agent && source ~/.zshrc"
 alias t="tmux"
-alias e="exit"
+alias e="$DOTFILES/scripts/nvim-fzf.sh"
 
 #git
 alias gp="git pull"

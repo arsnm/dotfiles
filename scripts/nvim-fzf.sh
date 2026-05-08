@@ -1,0 +1,6 @@
+#!/bin/sh
+
+file=$(fzf)
+if [ -n "$file" ]; then
+    nvim "$file"
+fi
