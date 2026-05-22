@@ -42,7 +42,7 @@ hl.config({
 
     decoration = {
         rounding = 1,
-        rounder_power = 2.,
+        rounding_power = 2.,
 
         active_opacity = 1.,
         inactive_opacity = 0.8,
@@ -56,9 +56,10 @@ hl.config({
             enabled = false,
         },
 
-        animations = {
-            enabled = false,
-        },
+    },
+
+    animations = {
+        enabled = false,
     },
 
     misc = {
@@ -69,7 +70,7 @@ hl.config({
     -- Input
     input = {
         kb_layout = "us, us",
-        kb_varient = ", intl",
+        kb_variant = ", intl",
         kb_options = "caps:swapescape, grp:rctrl_rshift_toggle",
         repeat_delay = 140,
         repeat_rate = 45,
@@ -82,4 +83,28 @@ hl.config({
 
 -- Binds
 require("binds")
+
+-- Window rule(s)
+hl.window_rule({
+    -- Fix some dragging issues with XWayland
+    name  = "fix-xwayland-drags",
+    match = {
+        class      = "^$",
+        title      = "^$",
+        xwayland   = true,
+        float      = true,
+        fullscreen = false,
+        pin        = false,
+    },
+
+    no_focus = true,
+})
+
+hl.window_rule({
+    name = "floating dev-window",
+    match = {
+        title = "^(glfw.*)$",
+        float = true,
+    }
+})
 
