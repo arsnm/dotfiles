@@ -27,7 +27,7 @@ vim.o.wildmenu = false
 vim.o.wildoptions = ""
 
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { space = '·', tab = '» ', trail = '·', nbsp = '␣' }
 
 local map = vim.keymap.set
 vim.g.mapleader = " "
