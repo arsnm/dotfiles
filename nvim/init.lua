@@ -81,8 +81,6 @@ map('t', '<C-Esc>', [[<C-\><C-n>]], {
 
 require('plugins')
 
-require('lspconfig')
-
 require('colors')
 
 require('autocmds')
