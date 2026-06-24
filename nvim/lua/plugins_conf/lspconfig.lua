@@ -8,6 +8,8 @@ vim.keymap.set('n', 'grq', '<cmd>silent! cclose<CR> | silent! lclose<CR>', {
 })
 
 vim.lsp.config["tinymist"] = {
-    formatterPrintWidth = 80,
+    settings = {
+        formatterProseWrap = true,
+        formatterPrintWidth = 80,
+    }
 }
-
