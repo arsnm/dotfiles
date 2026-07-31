@@ -2,7 +2,7 @@
 # zsh configuration
 #
 
-# ssh-agent config - DISABLED cause using 1password's ssh_agent for now
+# ssh-agent config - DISABLED because using bitwarden's ssh_agent for now (see docs/setup_<target>.md for more information)
 # ssh_config() {
 #     if [[ "$(uname)" == "Linux" ]]; then
 #         if [[ ]]
@@ -23,16 +23,38 @@
 #     fi
 # }
 # ssh_config
-ssh_config_1pswd(){
-    if [[ "$SSH_AUTH_SOCK" != "$HOME/.1password/agent.sock" && -e "$HOME/.1password/agent.sock" ]]; then
-        export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
-    elif [[ ! -e "$HOME/.1password/agent.sock" ]]; then
-        echo "1passowrd ssh-agent is not found (at least not in ~/.1password/)"
-        echo "Make sure it is enabled/installed, and on macOS, that the symlink is set :"
-        echo 'ln -sf "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" ~/.1password/agent.sock'
+
+bw_ssh_agent_config() {
+    local bw_sock="$HOME/.bitwarden-ssh-agent.sock"
+    local use_bw=false
+
+    if uname -r | grep -qi "microsoft"; then
+        # Only attempt bridging if our custom relay tool is available
+        if command -v npiperelay.exe >/dev/null 2>&1; then
+            if ! ss -a 2>/dev/null | grep -q "$bw_sock"; then
+                rm -f "$bw_sock"
+                (setsid socat UNIX-LISTEN:"$bw_sock",fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+                sleep 0.5 
+            fi
+            
+            if [ -S "$bw_sock" ]; then
+                use_bw=true
+            fi
+        fi
+    elif [ -S "$bw_sock" ]; then
+        use_bw=true
+    fi
+
+    if [ "$use_bw" = true ]; then
+        export SSH_AUTH_SOCK="$bw_sock"
+    else
+        # Fallback to standard ssh-agent if no valid socket exists
+        if [ -z "$SSH_AUTH_SOCK" ] || [ ! -S "$SSH_AUTH_SOCK" ]; then
+            eval "$(ssh-agent -s)" >/dev/null
+        fi
     fi
 }
-ssh_config_1pswd
+bw_ssh_agent_config
 
 # homebrew config (if on macOS)
 if [[ "$(uname)" == "Darwin" ]]; then
@@ -79,4 +101,6 @@ source $XDG_CONFIG_HOME/zsh/env.zsh
 source $XDG_CONFIG_HOME/zsh/aliases.zsh
 source $XDG_CONFIG_HOME/zsh/functions.zsh
 
-fastfetch
+if command -v fasfetch &>/dev/null; then
+    fastfetch
+fi

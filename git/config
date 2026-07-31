@@ -1,7 +1,7 @@
 [user]
     email = arsene.mallet2004@gmail.com
     name = arsnm
-    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIwtjIZEs+PR+Gpf4AUxJ51tcHwZLJFTHhkw4Z4obKem
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIItBh6tHdxoZdeLl87PkgjHX/Kp1DfsIlACHG5wy1B+C
 
 [init]
     defaultBranch = main

@@ -12,6 +12,7 @@ alias dot="cd $DOTFILES"
 alias repos="cd $REPOS"
 alias mrepos="cd $REPOS/github/arsnm"
 alias glabtelecom="cd $REPOS/gitlab/telecom-paris"
+alias p="cd $CODE"
 alias c="clear"
 
 #ls
@@ -44,8 +45,8 @@ alias fp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}
 # search for a file with fzf and open it in vim
 alias vf='v $(fp)'
 
-alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias jupyternb="jupyter lab --no-browser"
 
 alias vpnt="sudo openvpn $XDG_CONFIG_HOME/openvpn/telecom-paris.ovpn"
