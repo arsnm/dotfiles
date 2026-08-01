@@ -1,36 +1,5 @@
 #!/bin/sh
 
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
-
-# create directories
-export XDG_CONFIG_HOME="$HOME/.config"
-mkdir -p "$XDG_CONFIG_HOME"
-mkdir -p "$HOME/Applications"
-mkdir -p "$HOME/bin"
-
-# symbolic links
-echo "Creating symbolic links..."
-ln -sfn "$PWD/git"              "$XDG_CONFIG_HOME/git"
-ln -sfn "$PWD/latexmk"          "$XDG_CONFIG_HOME/latexmk"
-ln -sfn "$PWD/nvim"             "$XDG_CONFIG_HOME/nvim"
-ln -sfn "$PWD/starship.toml"    "$XDG_CONFIG_HOME/starship.toml"
-ln -sfn "$PWD/tmux"             "$XDG_CONFIG_HOME/tmux"
-ln -sfn "$PWD/zsh"              "$XDG_CONFIG_HOME/zsh"
-ln -sfn "$PWD/.zshrc_temp"      "$HOME/.zshrc"
-ln -sfn "$PWD/.template"        "$HOME/.template"
-
-# detect OS
-unameOut="$(uname -s)"
-case "$unameOut" in
-    Linux*)   machine=Linux ;;
-    Darwin*)  machine=Mac ;;
-    CYGWIN*)  machine=Cygwin ;;
-    MINGW*)   machine=MinGw ;;
-    *)        machine="UNKNOWN:$unameOut" ;;
-esac
-
 # install Neovim locally if not present
 if ! command_exists nvim; then
     echo "Neovim not found, installing locally..."
