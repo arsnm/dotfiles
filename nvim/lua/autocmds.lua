@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.cmd("compiler cargo")
         vim.opt_local.makeprg = "cargo build"
 
-        vim.api.nvim_buf_create_user_command(0, "Run" , function ()
+        vim.api.nvim_buf_create_user_command(0, "Run", function()
             vim.cmd("vsplit | term cargo run")
         end, { desc = "Run the current Rust project" })
     end,
@@ -23,13 +23,34 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.cmd("compiler typst")
         vim.opt_local.makeprg = "typst compile --root . %:S"
 
+        -- Open the web preview in a Chrome App window
+        vim.api.nvim_buf_create_user_command(0, "Otypst", function()
+            local bin_path = vim.fn.exepath("tinymist")
+            local file_path = vim.fn.expand("%:p")
+
+            if bin_path == "" then
+                vim.notify("tinymist executable not found", vim.log.levels.ERROR)
+                return
+            end
+
+            local preview_app = "~/Applications/Chromium Apps.localized/typreview.app/"
+
+            vim.fn.jobstart({ bin_path, "preview", file_path }, {
+                detach = true,
+                env = { BROWSER = "NONE" },
+            })
+            vim.fn.jobstart({ "open", preview_app }, {
+                detach = true,
+            })
+        end, { desc = "Open a web preview of the Typst Document in a Chrome App window" })
+
         -- Open the compiled PDF
-        vim.api.nvim_buf_create_user_command(0, "Otypst", function ()
+        vim.api.nvim_buf_create_user_command(0, "Otypstpdf", function()
             local pdf_path = vim.fn.expand("%:p:r") .. ".pdf"
             if vim.fn.filereadable(pdf_path) == 1 then
                 if vim.fn.has("macunix") == 1 then
                     vim.fn.jobstart({ "open", pdf_path }, { detach = true })
-                elseif vim.fn.has("linux") == 1 then 
+                elseif vim.fn.has("linux") == 1 then
                     vim.fn.jobstart({ "xdg-open", pdf_path }, { detach = true })
                 end
                 print("Opened PDF: " .. pdf_path)
@@ -39,7 +60,7 @@ vim.api.nvim_create_autocmd("FileType", {
         end, { desc = "Open the compiled Typst PDF in the default PDF viewer" })
 
         -- Start to watch the file
-        vim.api.nvim_buf_create_user_command(0, "Wtypst", function ()
+        vim.api.nvim_buf_create_user_command(0, "Wtypst", function()
             local file_path = vim.fn.expand("%:p")
             if vim.fn.filereadable(file_path) == 1 then
                 local original_win = vim.api.nvim_get_current_win()
@@ -66,7 +87,7 @@ vim.api.nvim_create_autocmd("FileType", {
             latexmk -pdflua -interaction=nonstopmode
             -auxdir=.aux -shell-escape -file-line-error -synctex=1 %:p"
         ]]
-        vim.api.nvim_buf_create_user_command(0, "OpenTex", function ()
+        vim.api.nvim_buf_create_user_command(0, "OpenTex", function()
             local pdf_path = vim.fn.expand("%:p:r") .. ".pdf"
             if vim.fn.filereadable(pdf_path) == 1 then
                 vim.fn.jobstart({ "xdg-open", pdf_path }, { detach = true })
