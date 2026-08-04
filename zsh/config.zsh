@@ -94,6 +94,7 @@ check_pyenv
 # custom app configuration
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.config/emacs/bin:$PATH
 
 # add all other configuration files
 source $XDG_CONFIG_HOME/zsh/omz.zsh
