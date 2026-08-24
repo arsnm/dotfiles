@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Checking for unneeded packages...
+When = PostTransaction
+Exec = /usr/bin/zsh -c "set -o pipefail && /usr/bin/pacman -Qtd | sed 's/^/  - /'  || /usr/bin/echo ':: No unneeded packages found.'"

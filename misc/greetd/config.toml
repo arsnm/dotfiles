@@ -1,0 +1,9 @@
+[terminal]
+vt = 1
+
+[initial_session]
+command = "uwsm start hyprland.desktop"
+user = "arsnm"
+
+[default_session]
+command = "agreety --cmd /bin/sh"

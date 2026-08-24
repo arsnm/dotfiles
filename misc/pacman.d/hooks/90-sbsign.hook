@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = linux*
+
+[Action]
+Description = Signing Linux kernel(s) for Secure Boot...
+When = PostTransaction
+Depends = sbsigntools
+Exec = /usr/local/bin/sign-kernels.sh
+

@@ -1,0 +1,7 @@
+[Unit]
+Description=Random Wallpaper Switcher
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/hypr/script/random_wallpaper.sh
+ExecStartPost=/usr/bin/systemctl --user restart hyprpaper.service
