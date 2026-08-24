@@ -2,7 +2,7 @@
 # environment variables
 #
 
-export BROWSER="chrome"
+export BROWSER="firefox"
 
 # directories
 export CODE="$HOME/Programming"
@@ -15,6 +15,6 @@ export ICLOUD="$HOME/icloud"
 export SCHOOL="$CODE/2a_telecom"
 export VENVS_PATH="$XDG_CONFIG_HOME/.venvs"
 
-export VISUAL="nvim"
-export EDITOR="nvim"
+export VISUAL="emacsclient -t"
+export EDITOR="emacsclient -t"
 export PYENV_ROOT="$PYENV_ROOT_"

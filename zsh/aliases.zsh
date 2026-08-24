@@ -3,6 +3,8 @@
 #
 
 alias v=nvim
+alias e="emacsclient -t"
+alias ec="emacsclient -c"
 
 #cd
 alias ..="cd.."
@@ -24,18 +26,17 @@ alias la="lsd -lathr"
 alias last='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
 
 alias sv="sudoedit"
-alias sk="killall ssh-agent && source ~/.zshrc"
 alias t="tmux"
-alias e="$DOTFILES/scripts/nvim-fzf.sh"
 
 #git
 alias gp="git pull"
+alias gpp="git push"
 alias gs="git status"
 alias lg="lazygit"
 
-alias ez="v $XDG_CONFIG_HOME/zsh/"
-alias eb="v ~/.bashrc"
-alias ev="cd ~/.config/nvim && v ."
+alias ez="$EDITOR $XDG_CONFIG_HOME/zsh/"
+alias eb="$EDITOR ~/.bashrc"
+alias ev="cd ~/.config/nvim && $EDITOR ."
 alias sz="source ~/.zshrc"
 alias sbr="source ~/.bashrc"
 
@@ -45,8 +46,6 @@ alias fp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}
 # search for a file with fzf and open it in vim
 alias vf='v $(fp)'
 
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias jupyternb="jupyter lab --no-browser"
 
 alias vpnt="sudo openvpn $XDG_CONFIG_HOME/openvpn/telecom-paris.ovpn"
@@ -54,3 +53,9 @@ alias vpnt="sudo openvpn $XDG_CONFIG_HOME/openvpn/telecom-paris.ovpn"
 if [[ "$(uname)" == "Darwin" ]]; then
     alias xdg-open="open"
 fi
+
+# to reboot on Windows (directly through UEFI)
+alias bootwindows="sudo efibootmgr --bootnext 0000 && sudo reboot"
+
+# to remove unneeded packages (with pacman)
+alias pacclean="sudo pacman -Rnsc $(pacman -Qdtq)"
