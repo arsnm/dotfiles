@@ -7,10 +7,10 @@
 # For Linux, the assumed distro is Arch (or at least, having pacman as a PM)
 #!/bin/zsh
 
-CONFIGS=("emacs" "git" "kitty" "lazygit" "nvim" "openvpn" "starship.toml" "tmux" "yazi" "zathura" "zsh")
-CONFIGS_LINUX=("dunstrc" "hypr" "waybar" "wofi" "rofi")
+CONFIGS=("doom" "git" "kitty" "lazygit" "nvim" "openvpn" "starship.toml" "tmux" "zathura" "zsh")
+CONFIGS_LINUX=("dunstrc" "hypr" "waybar" "wofi" "rofi" "quickshell")
 CONFIGS_MACOS=("aerospace")
-PACKAGES=("git" "neovim" "fzf" "tmux" "starship" "ripgrep" "gcc" "pyenv" "lsd" "lazygit")
+PACKAGES=("git" "neovim" "emacs" "fzf" "tmux" "starship" "ripgrep" "gcc" "pyenv" "lsd" "lazygit" "firefox")
 CASKS=("google-chrome" "mactex" "sioyek" "linearmouse" "raycast" "hiddenbar" "obsidian")
 
 command_exists() {
