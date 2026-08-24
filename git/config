@@ -10,7 +10,7 @@
     ui = auto
 
 [core]
-    editor = nvim
+    editor = emacsclient -t
 
 [gpg]
   format = ssh
@@ -29,6 +29,15 @@
 
 [includeIf "hasconfig:remote.*.url:git@gitlab.enst.fr:*/**"]
     path = ~/.config/git/telecom-paris.config
+
+[includeIf "hasconfig:remote.*.url:git@ssh.dev.azure.com:v3/Sauermann*/**"]
+    path = ~/.config/git/kimo.config
+
+[includeIf "hasconfig:remote.*.url:https://SauermannIndustrie@dev.azure.com/**"]
+    path = ~/.config/git/kimo.config
+
+[includeIf "hasconfig:remote.*.url:https://dev.azure.com/SauermannIndustrie/**"]
+    path = ~/.config/git/kimo.config
 
 [includeIf "gitdir:/cal/"]
     path = ~/.config/git/remote_telecom.config
