@@ -1,0 +1,5 @@
+singleton Theme 1.0 Theme.qml
+Bar 1.0 Bar.qml
+Notifications 1.0 Notifications.qml
+ModuleButton 1.0 ModuleButton.qml
+PowerMenu 1.0 PowerMenu.qml
