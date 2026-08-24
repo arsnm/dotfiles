@@ -3,8 +3,8 @@
 
 -- Monitors
 hl.monitor({
-    output = "HDMI-A-1",
-    mode = "1920x1080@240",
+    output = "DP-6",
+    mode = "1920x1080@400",
     position = "0x0",
     scale = "1",
 })
@@ -13,7 +13,7 @@ hl.monitor({
 local terminal = "kitty"
 local fileManager = "dolphin"
 local menu = "fuzzel"
-local browser = "google-chrome"
+local browser = "firefox"
 
 -- Environment variables
 hl.env("XCURSOR_SIZE", "8")

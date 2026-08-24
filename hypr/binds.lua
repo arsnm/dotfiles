@@ -8,7 +8,7 @@ local uwsm = "uwsm app -- "
 local terminal = "kitty"
 local fileManager = "dolphin"
 local menu = "fuzzel"
-local browser = "google-chrome"
+local browser = "firefox"
 
 hl.bind(
     mainMod .. " + SHIFT + Q",
