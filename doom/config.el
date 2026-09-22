@@ -21,8 +21,16 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 20 :weight 'semi-light)
-     doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font Propo" :size 19))
+(setq
+ doom-font
+ (font-spec :family "Iosevka Nerd Font Mono" :size 20 :weight 'semi-light)
+ doom-variable-pitch-font
+ (font-spec :family "Iosevka Nerd Font Propo" :size 19)
+ ;; Use a dedicated symbol font so icons don't inherit Iosevka's narrow cell
+ ;; metrics
+ doom-symbol-font
+ (font-spec :family "Symbols Nerd Font Mono" :size 18))
+
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -81,6 +89,8 @@
         (tab-mark ?\t [?» ?\s])
         (nbsp-mark ?\u00A0 [?␣])))
 (global-whitespace-mode +1)
+
+(setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/rbw-agent.sock"))
 
 (load! "lsp")
 
