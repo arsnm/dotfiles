@@ -4,7 +4,7 @@
 
 alias v=nvim
 alias e="emacsclient -t"
-alias ec="emacsclient -c"
+alias egui="emacsclient -r -n"
 
 #cd
 alias ..="cd.."
@@ -54,8 +54,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
     alias xdg-open="open"
 fi
 
-# to reboot on Windows (directly through UEFI)
-alias bootwindows="sudo efibootmgr --bootnext 0000 && sudo reboot"
-
-# to remove unneeded packages (with pacman)
-alias pacclean="sudo pacman -Rnsc $(pacman -Qdtq)"
+if [[ "$(uname)" == "Linux" ]]; then
+    alias xdg-open="open"
+    # to reboot on Windows (directly through UEFI)
+    alias bootwindows="sudo efibootmgr --bootnext 0000 && sudo reboot"
+    # to remove unneeded packages (with pacman)
+    alias pacclean="sudo pacman -Rnsc $(pacman -Qdtq)"
+fi

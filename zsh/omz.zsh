@@ -23,7 +23,7 @@ zstyle ':omz:update' frequency 2
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -49,11 +49,8 @@ fi
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
-    web-search
-    tmux
     zsh-autosuggestions
     zsh-syntax-highlighting
-    git-prompt
 )
 
 # zsh-vi-mode configuration
