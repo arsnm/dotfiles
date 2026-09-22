@@ -1,13 +1,26 @@
 #
 # zsh configuration
 
-
 # homebrew config (if on macOS)
 if [[ "$(uname)" == "Darwin" ]]; then
     export PATH=/opt/homebrew/bin:$PATH
     export PATH=/opt/homebrew/opt/rustup/bin/:$PATH
     fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 fi
+
+# texlive config (add it to PATH)
+check_texlive() {
+    if [[ -d "/usr/local/texlive" ]]; then
+        if [[ "$(uname)" == "Linux" ]]; then
+            export PATH=/usr/local/texlive/2025/bin/x86_64-linux:$PATH
+        elif [[ "$(uname)" == "Darwin" ]]; then
+            export PATH=/usr/local/texlive/2024/bin/universal-darwin:$PATH
+        fi
+        export MANPATH=/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH
+        export INFOPATH=/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH
+    fi
+}
+check_texlive
 
 # pyenv configuration
 check_pyenv() {
@@ -162,7 +175,6 @@ check_texlive() {
 check_texlive
 
 autoload zmv
-
 
 if command -v fasfetch &>/dev/null; then
     fastfetch
