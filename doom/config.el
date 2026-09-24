@@ -41,6 +41,15 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'gruber-darker)
+(custom-theme-set-faces! 'gruber-darker
+  ;; typst inline/block code
+  '(typst-ts-markup-rawspan-blob-face :inherit font-lock-string-face)
+
+  '(markdown-inline-code-face :inherit font-lock-string-face)
+
+  '(org-code :inherit font-lock-string-face)
+
+  '(org-verbatim :inherit font-lock-string-face))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -83,24 +92,18 @@
 ;; they are implemented.
 
 
-(setq whitespace-style '(face
-                         spaces
-                         tabs
-                         space-mark
-                         tab-mark
-                         nbsp-mark))
 (after! whitespace
-  (setq whitespace-display-mapping
-        (assq-delete-all 'newline-mark whitespace-display-mapping))
-  )
+  (setq whitespace-style (delq 'newline (delq 'newline-mark whitespace-style))))
 
 (global-whitespace-mode 1)
+
+(use-package! rainbow-mode
+  :defer t
+  :commands (rainbow-mode))
 
 (setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/agent.sock"))
 
 (map! :v "J" ":m '>+1<CR>gv=gv"
       :v "K" ":m '<-2<CR>gv=gv")
 
-
 (load! "lsp")
-
