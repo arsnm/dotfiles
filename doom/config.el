@@ -83,14 +83,24 @@
 ;; they are implemented.
 
 
-(setq whitespace-style '(face spaces tabs space-mark tab-mark nbsp-mark))
-(setq whitespace-display-mapping
-      '((space-mark ?\u0020 [?·])
-        (tab-mark ?\t [?» ?\s])
-        (nbsp-mark ?\u00A0 [?␣])))
-(global-whitespace-mode +1)
+(setq whitespace-style '(face
+                         spaces
+                         tabs
+                         space-mark
+                         tab-mark
+                         nbsp-mark))
+(after! whitespace
+  (setq whitespace-display-mapping
+        (assq-delete-all 'newline-mark whitespace-display-mapping))
+  )
 
-(setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/rbw-agent.sock"))
+(global-whitespace-mode 1)
+
+(setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/agent.sock"))
+
+(map! :v "J" ":m '>+1<CR>gv=gv"
+      :v "K" ":m '<-2<CR>gv=gv")
+
 
 (load! "lsp")
 
