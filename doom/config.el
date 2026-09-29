@@ -29,7 +29,9 @@
  ;; Use a dedicated symbol font so icons don't inherit Iosevka's narrow cell
  ;; metrics
  doom-symbol-font
- (font-spec :family "Symbols Nerd Font Mono" :size 18))
+ (font-spec :family "Symbols Nerd Font Mono" :size 18)
+ doom-emoji-font
+ (font-spec :family "Noto Color Emoji" :size 16))
 
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
