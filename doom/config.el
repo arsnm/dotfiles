@@ -21,8 +21,18 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 20 :weight 'semi-light)
-     doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font Propo" :size 19))
+(setq
+ doom-font
+ (font-spec :family "Iosevka Nerd Font Mono" :size 20 :weight 'semi-light)
+ doom-variable-pitch-font
+ (font-spec :family "Iosevka Nerd Font Propo" :size 19)
+ ;; Use a dedicated symbol font so icons don't inherit Iosevka's narrow cell
+ ;; metrics
+ doom-symbol-font
+ (font-spec :family "Symbols Nerd Font Mono" :size 18)
+ doom-emoji-font
+ (font-spec :family "Noto Color Emoji" :size 16))
+
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -33,6 +43,15 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'gruber-darker)
+(custom-theme-set-faces! 'gruber-darker
+  ;; typst inline/block code
+  '(typst-ts-markup-rawspan-blob-face :inherit font-lock-string-face)
+
+  '(markdown-inline-code-face :inherit font-lock-string-face)
+
+  '(org-code :inherit font-lock-string-face)
+
+  '(org-verbatim :inherit font-lock-string-face))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -75,12 +94,18 @@
 ;; they are implemented.
 
 
-(setq whitespace-style '(face spaces tabs space-mark tab-mark nbsp-mark))
-(setq whitespace-display-mapping
-      '((space-mark ?\u0020 [?·])
-        (tab-mark ?\t [?» ?\s])
-        (nbsp-mark ?\u00A0 [?␣])))
-(global-whitespace-mode +1)
+(after! whitespace
+  (setq whitespace-style (delq 'newline (delq 'newline-mark whitespace-style))))
+
+(global-whitespace-mode 1)
+
+(use-package! rainbow-mode
+  :defer t
+  :commands (rainbow-mode))
+
+(setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/agent.sock"))
+
+(map! :v "J" ":m '>+1<CR>gv=gv"
+      :v "K" ":m '<-2<CR>gv=gv")
 
 (load! "lsp")
-

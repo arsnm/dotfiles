@@ -53,3 +53,4 @@
 ;; (unpin! t)
 
 (package! gruber-darker-theme)
+(package! rainbow-mode)

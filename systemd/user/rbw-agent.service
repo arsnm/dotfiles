@@ -1,0 +1,12 @@
+[Unit]
+Description=rbw agent
+Documentation=A CLI tool interfacing bitwarden/vaultwarden, and an ssh-agent.
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rbw-agent
+Restart=on-failure
+RestartSec=3s
+
+[Install]
+WantedBy=default.target

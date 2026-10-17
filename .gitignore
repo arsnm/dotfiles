@@ -5,3 +5,5 @@ last_update.txt
 
 wsl.config
 kimo.config
+
+*.wants
