@@ -54,9 +54,10 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     git-prompt
+    nrfutil
 )
 
 # zsh-vi-mode configuration
-ZVM_VI_EDITOR='nvim'
+ZVM_VI_EDITOR='emacsclient -t'
 
 source $ZSH/oh-my-zsh.sh

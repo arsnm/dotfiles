@@ -6,9 +6,9 @@ local uwsm = "uwsm app -- "
 
 -- Programs
 local terminal = "kitty"
-local fileManager = "dolphin"
-local menu = "fuzzel"
 local browser = "firefox"
+local fileManager = "dolphin"
+local menu = "anyrun"
 
 hl.bind(
     mainMod .. " + SHIFT + Q",
@@ -36,7 +36,7 @@ hl.bind(
     hl.dsp.exec_cmd(uwsm .. fileManager)
 )
 hl.bind(
-    "ALT + space",
+    mainMod .. " + space",
     hl.dsp.exec_cmd(uwsm .. menu)
 )
 hl.bind(
@@ -55,10 +55,6 @@ hl.bind(
 hl.bind(
     mainMod .. " + P",
     hl.dsp.window.pseudo()
-)
-hl.bind(
-    mainMod .. " + O",
-    hl.dsp.layout("togglesplit")
 )
 
 hl.bind(

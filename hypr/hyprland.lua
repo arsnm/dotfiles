@@ -40,6 +40,10 @@ hl.config({
         layout = "dwindle",
     },
 
+    scrolling = {
+        direction = "right"
+    },
+
     decoration = {
         rounding = 1,
         rounding_power = 2.,
@@ -81,10 +85,14 @@ hl.config({
     },
 })
 
+-- Workspace rules
+hl.workspace_rule({ workspace = "1", layout = "master" })
+hl.workspace_rule({ workspace = "2", layout = "scrolling" })
+
 -- Binds
 require("binds")
 
--- Window rule(s)
+-- Window rule
 hl.window_rule({
     -- Fix some dragging issues with XWayland
     name  = "fix-xwayland-drags",

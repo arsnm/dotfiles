@@ -29,14 +29,12 @@ bw_ssh_agent_config() {
     local use_bw=false
 
     if uname -r | grep -qi "microsoft"; then
-        # Only attempt bridging if our custom relay tool is available
         if command -v npiperelay.exe >/dev/null 2>&1; then
             if ! ss -a 2>/dev/null | grep -q "$bw_sock"; then
                 rm -f "$bw_sock"
                 (setsid socat UNIX-LISTEN:"$bw_sock",fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
                 sleep 0.5 
             fi
-            
             if [ -S "$bw_sock" ]; then
                 use_bw=true
             fi
@@ -48,7 +46,12 @@ bw_ssh_agent_config() {
     if [ "$use_bw" = true ]; then
         export SSH_AUTH_SOCK="$bw_sock"
     else
-        # Fallback to standard ssh-agent if no valid socket exists
+        # Trust the systemd-provided rbw socket, even if the daemon is still booting
+        if [[ "$SSH_AUTH_SOCK" == *"/rbw/ssh-agent-socket" ]]; then
+            return 0
+        fi
+
+        # Fallback to standard ssh-agent
         if [ -z "$SSH_AUTH_SOCK" ] || [ ! -S "$SSH_AUTH_SOCK" ]; then
             eval "$(ssh-agent -s)" >/dev/null
         fi
