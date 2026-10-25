@@ -10,6 +10,10 @@ QtObject {
     readonly property color inactive: "#96a6c8"
     readonly property color danger: "#f43841"
 
-    readonly property color micActive: "#56b6c2"
+    readonly property color micActive: "#9e96c7"
+    readonly property color volMuted: danger
+    readonly property color volLow: "#303540"
     readonly property color volMid: "#565f73"
+    readonly property color volHigh: inactive
+    readonly property color volVeryHigh: danger
 }

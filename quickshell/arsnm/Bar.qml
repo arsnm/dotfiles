@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import Quickshell.Io
+import Quickshell.Services.Pipewire
 
 PanelWindow {
     id: barWindow
@@ -13,11 +14,19 @@ PanelWindow {
         right: true
     }
 
-    PowerMenu {
-        id: powerMenu
+    // Bind PipeWire objects so QS actively tracks their state changes.
+    PwObjectTracker {
+        objects: [Pipewire.defaultAudioSink, Pipewire.defaultAudioSource]
     }
 
-    height: 38
+    PowerMenu {
+        id: powerMenu
+        anchor.window: barWindow
+        anchor.rect.x: 0
+        anchor.rect.y: -6
+    }
+
+    implicitHeight: 30
     margins {
         bottom: 2
         top: 4
@@ -32,142 +41,194 @@ PanelWindow {
         border.color: Theme.fg
         border.width: 1
         radius: 2
-        Layout.fillHeight: true
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        implicitWidth: children[0].implicitWidth + 16
     }
 
-    RowLayout {
-        anchors.fill: parent
-        spacing: 0
+    // ── Modules Left ─────────────────────────────────────────────────────
+    ModuleGroup {
+        anchors.left: parent.left
 
-        // ── Modules Left ─────────────────────────────────────────────────────
-        ModuleGroup {
-            RowLayout {
-                anchors.centerIn: parent
-                spacing: 8
+        RowLayout {
+            anchors.centerIn: parent
+            spacing: 8
 
-                // Clock Module
-                ModuleButton {
-                    id: clockBtn
-                    defaultColor: inactiveColor
-                    font.pixelSize: 12
-                    font.weight: Font.Bold
+            // Clock Module
+            ModuleButton {
+                id: clockBtn
+                defaultColor: inactiveColor
+                font.family: "Iosevka Nerd Font"
+                font.weight: Font.Light
 
-                    Timer {
-                        interval: 1000; running: true; repeat: true
-                        onTriggered: clockBtn.text = Qt.formatDateTime(
-                            new Date(),
-                            "[ hh:mm:ss ap]"
-                        )
-                    }
+                Timer {
+                    interval: 1000
+                    running: true
+                    repeat: true
+                    triggeredOnStart: true
+                    onTriggered: clockBtn.text = Qt.formatDateTime(
+                        new Date(),
+                        "[  hh:mm:ss ap]"
+                    )
+                }
+            }
+
+            // Power Module
+            ModuleButton {
+                text: "[󰤆]"
+                onClicked: powerMenu.visible = !powerMenu.visible
+            }
+
+            // Network Module (Native replacement for polling)
+            NetworkModule {}
+
+            // Bluetooth Module
+            BluetoothModule {}
+
+            // Microphone Module (Pipewire)
+            ModuleButton {
+                id: micBtn
+                readonly property PwNode source: Pipewire.defaultAudioSource
+                readonly property bool muted: source?.audio ? source.audio.muted : true
+
+                text: muted ? "[󰍭]" : "[󰍬]"
+                defaultColor: muted ? Theme.danger : Theme.micActive
+                onClicked: {
+                    if (source?.audio) source.audio.muted = !source.audio.muted
                 }
 
-                // Power Module
-                ModuleButton {
-                    text: "[󰤆]"
-                    onClicked: powerMenu.visible = !powerMenu.visible
-                }
-
-                // Network Module (Native replacement for polling)
-                ModuleButton {
-                    text: "[󰤨]" // Placeholder, ideally bound to NetworkManager DBus in full setups
-                }
-
-                // Bluetooth Module
-                ModuleButton {
-                    text: "[]"
-                    Process {
-                        id: btToggle
-                        command: [
-                            "zsh",
-                            "-c",
-                            "rfkill list bluetooth | grep -q 'Soft blocked: yes' && rfkill unblock bluetooth || rfkill block bluetooth"
-                        ]
-                    }
-                    onClicked: btToggle.running = true
-                }
-
-                // Microphone Module (using your script)
-                ModuleButton {
-                    id: micBtn
-                    textFormat: Text.RichText // Required to parse the script's HTML spans
-
-                    Timer {
-                        interval: 1000; running: true; repeat: true
-                    }
+                Timer {
+                    interval: 1000; running: true; repeat: true
                 }
             }
         }
+    }
 
-        // ── Spacer ───────────────────────────────────────────────────────────
-        Item { Layout.fillWidth: true }
+    // ── Modules Center ───────────────────────────────────────────────────
+    ModuleGroup {
+        anchors.horizontalCenter: parent.horizontalCenter
 
-        // ── Modules Center ───────────────────────────────────────────────────
-        ModuleGroup {
-            RowLayout {
-                anchors.centerIn: parent
+        RowLayout {
+            anchors.centerIn: parent
 
-                Repeater {
-                    model: Hyprland.workspaces
-                    ModuleButton {
-                        property bool isActive: Hyprland.focusedWorkspace == moduleData
-                        property var icons: {
-                            "1": "α",
-                            "2": "β",
-                            "3": "γ",
-                            "4": "δ",
-                            "5": "ε",
-                            "6": "ζ",
-                            "7": "η",
-                            "8": "θ",
-                        }
-                        text: "[" + (icons[modelData.id.toString()] || modelData.id) + "]"
-                        defaultColor: isActive ? Theme.danger : Theme.fg
-                        onClicked: Hyprland.dispatch("workspace" + modelData.id)
+            // Hyprland Workspaces.
+            Repeater {
+                model: Hyprland.workspaces
+                ModuleButton {
+                    required property HyprlandWorkspace modelData
+                    property var icons: {
+                        "1": "α",
+                        "2": "β",
+                        "3": "γ",
+                        "4": "δ",
+                        "5": "ε",
+                        "6": "ζ",
+                        "7": "η",
+                        "8": "θ",
                     }
+                    text: "[" + (icons[modelData.id.toString()] || modelData.id) + "]"
+                    defaultColor: modelData.active ? Theme.danger : Theme.fg
+                    onClicked: modelData.activate()
+                    onScrolledUp: Hyprland.dispatch("hl.dsp.focus({ workspace = 'e+1' })")
+                    onScrolledDown: Hyprland.dispatch("hl.dsp.focus({ workspace = 'e-1' })")
                 }
             }
         }
+    }
 
-        // ── Spacer ─────────────────────────────────────────────────────
-        Item { Layout.fillWidth: true }
 
-        // ── Modules Right ──────────────────────────────────────────────
-        ModuleGroup {
-            RowLayout {
-                anchors.centerIn: parent
-                spacing: 8
+    // ── Modules Right ──────────────────────────────────────────────
+    ModuleGroup {
+        anchors.right: parent.right
 
-                // Keyboard Module
-                ModuleButton {
-                    id: kbdBtn
-                    Timer {
-                        interval: 1000; running: true; repeat: true
-                        onTriggered: {
-                            Quickshell.exec("bash ~/.config/waybar/scripts/keyboard-status.sh", (output) => {
-                                let json = JSON.parse(output)
-                                kbdBtn.text = json.text || ""
-                            })
+        RowLayout {
+            anchors.centerIn: parent
+            spacing: 8
+
+            // Keyboard Module.
+            ModuleButton {
+                id: kbdBtn
+                visible: text !== ""
+
+                Process {
+                    id: kbdQuery
+                    command: ["hyprctl", "-j", "devices"]
+                    stdout: StdioCollector {
+                        onStreamFinished: {
+                            try {
+                                let data = JSON.parse(this.text)
+                                let kbd = data.keyboards.find(k => k.main) || data.keyboards[0]
+                                if (!kbd) return
+
+                                let isIntl = kbd.active_keymap.toLowerCase().includes("intl")
+                                let isCaps = kbd.capsLock
+
+                                let parts = []
+                                if (isCaps) parts.push("C")
+                                if (isIntl) parts.push("I")
+
+                                kbdBtn.text = parts.length > 0 ? "[" + parts.join("-") + "]" : ""
+                            } catch (e) {
+                                console.log("Failed to parse hyprctl devices:", e)
+                            }
                         }
                     }
                 }
 
-                // Volume Module
-                ModuleButton {
-                    id: volBtn
-                    textFormat: Text.RichText // Required for span foregrounds
-                    onClicked: Quickshell.exec("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
-                    onScrolledUp: Quickshell.exec("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+")
-                    onScrolledDown: Quickshell.exec("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
-
-                    Timer {
-                        interval: 1000; running: true; repeat: true
-                        onTriggered: {
-                            Quickshell.exec("bash ~/.config/waybar/scripts/volume.sh", (output) => {
-                                let json = JSON.parse(output)
-                                volBtn.text = json.text
-                            })
+                Connections {
+                    target: Hyprland
+                    function onRawEvent(event) {
+                        if (event.name === "activelayout") {
+                            kbdQuery.running = true
                         }
                     }
+                }
+
+                Timer {
+                    interval: 500
+                    running: true
+                    repeat: true
+                    triggeredOnStart: true
+                    onTriggered: kbdQuery.running = true
+                }
+            }
+
+            // Volume Module.
+            ModuleButton {
+                id: volBtn
+
+                readonly property PwNode sink: Pipewire.defaultAudioSink
+                readonly property bool muted: sink?.audio ? sink.audio.muted : false
+                readonly property int vol: sink?.audio ? Math.round(sink.audio.volume * 100) : 0
+
+                defaultColor: {
+                    muted || vol == 0 ? Theme.volMuted :
+                            (vol < 33 ? Theme.volLow :
+                            (vol < 66 ? Theme.volMid :
+                            (vol < 100 ? Theme.volHigh : Theme.volVeryHigh)))
+                }
+
+                text: {
+                    let displayVol = muted ? 0 : vol
+                    let icon = muted ? "" :
+                        (vol == 0 ? "" :
+                            (vol < 33 ? "" :
+                            (vol < 66 ? "" :
+                            (vol < 100 ? "" : ""))))
+                    let filled = Math.min(10, Math.max(0, Math.floor(displayVol / 10)))
+                    let empty = 10 - filled
+                    let bar = "[" + "".repeat(filled) + "".repeat(empty) + "]"
+                    return `${icon} ${bar} ${displayVol}%`
+                }
+
+                onClicked: {
+                    if (sink?.audio) sink.audio.muted = !sink.audio.muted
+                }
+                onScrolledUp: {
+                    if (sink?.audio) sink.audio.volume = Math.min(1.5, sink.audio.volume + 0.05)
+                }
+                onScrolledDown: {
+                    if (sink?.audio) sink.audio.volume = Math.max(0.0, sink.audio.volume - 0.05)
                 }
             }
         }

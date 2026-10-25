@@ -3,3 +3,5 @@ Bar 1.0 Bar.qml
 Notifications 1.0 Notifications.qml
 ModuleButton 1.0 ModuleButton.qml
 PowerMenu 1.0 PowerMenu.qml
+BluetoothModule 1.0 BluetoothModule.qml
+NetworkModule 1.0 NetworkModule.qml

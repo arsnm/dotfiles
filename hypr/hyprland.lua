@@ -3,7 +3,7 @@
 
 -- Monitors
 hl.monitor({
-    output = "DP-6",
+    output = "DP-5",
     mode = "1920x1080@400",
     position = "0x0",
     scale = "1",
@@ -104,15 +104,25 @@ hl.window_rule({
         fullscreen = false,
         pin        = false,
     },
-
     no_focus = true,
 })
 
 hl.window_rule({
-    name = "floating dev-window",
+    name = "dev-window-floating",
+    float = true,
+    center = true,
     match = {
-        title = "^(glfw.*)$",
-        float = true,
+        initial_title = "^(glfw.*)$",
     }
 })
 
+hl.window_rule({
+    name = "qs-floating-popups",
+    float = true,
+    center = true,
+    size = { 1200, 850 },
+    suppress_event = "maximize",
+    match = {
+        class = "^(qs-float)$",
+    },
+})

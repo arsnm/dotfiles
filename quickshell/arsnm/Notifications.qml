@@ -6,7 +6,7 @@ import Quickshell.Services.Notifications
 PanelWindow {
     anchors { top: true; right: true }
     margins { top: 50; right: 10 }
-    width: 300
+    implicitWidth: 300
     color: "transparent"
 
     ListView {
