@@ -3,5 +3,5 @@ import QtQuick
 
 ShellRoot {
     Bar {}
-    Notifications {}
+    // Notifications {}
 }

@@ -61,15 +61,29 @@ PanelWindow {
                 font.family: "Iosevka Nerd Font"
                 font.weight: Font.Light
 
+                property bool showDate: false
+                property var currentTime: new Date()
+
+                function updateDisplay() {
+                    text = showDate
+                        ? Qt.formatDateTime(currentTime, "[󰃭  ddd yyyy-MM-dd]")
+                        : Qt.formatDateTime(currentTime, "[  hh:mm:ss ap]")
+                }
+
                 Timer {
                     interval: 1000
                     running: true
                     repeat: true
                     triggeredOnStart: true
-                    onTriggered: clockBtn.text = Qt.formatDateTime(
-                        new Date(),
-                        "[  hh:mm:ss ap]"
-                    )
+                    onTriggered: {
+                        clockBtn.currentTime = new Date();
+                        clockBtn.updateDisplay();
+                    }
+                }
+
+                onClicked: {
+                    showDate = !showDate;
+                    updateDisplay();
                 }
             }
 
@@ -79,7 +93,7 @@ PanelWindow {
                 onClicked: powerMenu.visible = !powerMenu.visible
             }
 
-            // Network Module (Native replacement for polling)
+            // Network Module
             NetworkModule {}
 
             // Bluetooth Module
@@ -95,10 +109,6 @@ PanelWindow {
                 defaultColor: muted ? Theme.danger : Theme.micActive
                 onClicked: {
                     if (source?.audio) source.audio.muted = !source.audio.muted
-                }
-
-                Timer {
-                    interval: 1000; running: true; repeat: true
                 }
             }
         }
@@ -148,26 +158,42 @@ PanelWindow {
             // Keyboard Module.
             ModuleButton {
                 id: kbdBtn
-                visible: text !== ""
+                property string currentSubmap: ""
+                property bool isIntl: false
+
+                readonly property var submapIcons: ({
+                    "screen_mode": "",
+                    "window_mode": "",
+                })
+
+                visible: currentSubmap !== "" || isIntl
+
+                defaultColor: currentSubmap !== "" ? Theme.danger : Theme.fg
+
+                text: {
+                    let parts = []
+                    if (currentSubmap !== "") {
+                        let icon = submapIcons[currentSubmap] || "󰘳"
+                        parts.push(`${icon}`)
+                    }
+                    if (isIntl) {
+                        parts.push("I")
+                    }
+                    return parts.length > 0 ? "[" + parts.join(" ") + "]" : ""
+                }
 
                 Process {
-                    id: kbdQuery
+                    id: initLayoutQuery
+                    running: true
                     command: ["hyprctl", "-j", "devices"]
                     stdout: StdioCollector {
                         onStreamFinished: {
                             try {
                                 let data = JSON.parse(this.text)
                                 let kbd = data.keyboards.find(k => k.main) || data.keyboards[0]
-                                if (!kbd) return
-
-                                let isIntl = kbd.active_keymap.toLowerCase().includes("intl")
-                                let isCaps = kbd.capsLock
-
-                                let parts = []
-                                if (isCaps) parts.push("C")
-                                if (isIntl) parts.push("I")
-
-                                kbdBtn.text = parts.length > 0 ? "[" + parts.join("-") + "]" : ""
+                                if (kbd && kbd.active_key) {
+                                    kbdBtn.isIntl = kbd.active_keymap.toLowerCase().includes("intl")
+                                }
                             } catch (e) {
                                 console.log("Failed to parse hyprctl devices:", e)
                             }
@@ -179,17 +205,20 @@ PanelWindow {
                     target: Hyprland
                     function onRawEvent(event) {
                         if (event.name === "activelayout") {
-                            kbdQuery.running = true
+                            let data = event.data || ""
+                            let keymap = data.includes(",") ? data.split(",").slice(1).join(",") : data
+                            kbdBtn.isIntl = keymap.toLowerCase().includes("intl")
+                        } else if (event.name === "submap") {
+                            let name = (event.data || "").trim()
+                            kbdBtn.currentSubmap = (name === "reset") ? "" : name
                         }
                     }
                 }
 
-                Timer {
-                    interval: 500
-                    running: true
-                    repeat: true
-                    triggeredOnStart: true
-                    onTriggered: kbdQuery.running = true
+                onClicked: {
+                    if (currentSubmap !== "") {
+                        Hyprland.dispatch("hl.dsp.submap('reset')")
+                    }
                 }
             }
 

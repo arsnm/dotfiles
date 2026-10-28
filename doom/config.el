@@ -109,3 +109,14 @@
       :v "K" ":m '<-2<CR>gv=gv")
 
 (load! "lsp")
+
+;;; Python stack (Ruff + uv + ty)
+(after! apheleia
+  (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff-isort ruff))
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff-isort ruff)))
+
+(after! eglot
+  (add-to-list 'eglot-server-programs
+               '(((python-mode :language-id "python")
+                  (python-ts-mode :language-id "python"))
+                 . ("ty" "server"))))

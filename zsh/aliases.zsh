@@ -55,7 +55,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
 fi
 
 if [[ "$(uname)" == "Linux" ]]; then
-    alias xdg-open="open"
     # to reboot on Windows (directly through UEFI)
     alias bootwindows="sudo efibootmgr --bootnext 0000 && sudo reboot"
     # to remove unneeded packages (with pacman)

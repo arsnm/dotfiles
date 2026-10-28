@@ -175,6 +175,8 @@ check_texlive() {
 }
 check_texlive
 
+export PATH="${HOME}/.local/bin:$PATH"
+
 autoload zmv
 
 if command -v fasfetch &>/dev/null; then
