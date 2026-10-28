@@ -121,7 +121,6 @@ hl.window_rule({
     float = true,
     center = true,
     size = { 1200, 850 },
-    suppress_event = "maximize",
     match = {
         class = "^(qs-float)$",
     },
