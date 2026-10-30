@@ -269,3 +269,23 @@ hl.define_submap("window_mode", function()
         hl.dsp.submap("reset")
     )
 end)
+
+hl.bind(
+    mainMod .. " + O",
+    hl.dsp.submap("osu_mode")
+)
+
+hl.define_submap("osu_mode", function()
+    hl.bind(
+        mainMod .. " + O",
+        hl.dsp.submap("reset")
+    )
+end)
+
+hl.on("keybinds.submap", function(submap_name)
+    if submap_name == "osu_mode" then
+        hl.exec_cmd("hyprctl keyword input:kb_options 'grp:rctrl_rshift_toggle'")
+    else
+        hl.exec_cmd("hyprctl keyword input:kb_options 'caps:swapescape, grp:rctrl_rshift_toggle'")
+    end
+end)

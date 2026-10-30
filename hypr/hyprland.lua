@@ -125,3 +125,18 @@ hl.window_rule({
         class = "^(qs-float)$",
     },
 })
+
+local was_osu = false
+
+hl.on("window.active", function(w)
+    local is_osu = w and w.title and w.title:match("^osu!$") ~= nil
+
+    if is_osu ~= was_osu then
+        was_osu = is_osu
+        if is_osu then
+            hl.config({ input = { kb_options = 'grp:rctrl_rshift_toggle' } })
+        else
+            hl.config({ input = { kb_options = 'grp:rctrl_rshift_toggle, caps:swapescape' } })
+        end
+    end
+end)
