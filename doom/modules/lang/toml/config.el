@@ -5,7 +5,7 @@
 ;;      +tree-sitter    use the built-in 'toml-ts-mode' when the grammar is
 ;;                      installed.
 
-(defvar +toml-column-width 100
+(defvar +toml-column-width 80
   "Line width for TOML buffers.
 Used for `fill-column', the whitespace-mode highlight, and taplo's
 `column-width' when the project has no taplo config file.")

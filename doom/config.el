@@ -125,5 +125,5 @@
   (defun +spell-add-french-h ()
     (spell-fu-dictionary-add (spell-fu-get-ispell-dictionary "fr"))
     (spell-fu-dictionary-add
-     (spell-fu-get-personnal-dictionary
+     (spell-fu-get-personal-dictionary
       "fr-personal" (expand-file-name "dict/fr.pws" doom-user-dir)))))
