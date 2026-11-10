@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Doxygen File Header
+# key: dhead
+# expand-env: ((yas-ident-line 'fixed))
+# --
+/**
+ * @file `(file-name-nondirectory (or buffer-file-name (buffer-name)))`
+ * @author ${1:arsnm}
+ * @brief ${2:Brief description of the file}
+ * @date `(format-time-string "%Y-%m-%d")`
+ *
+ * @copyright Copyright (c) `(format-time-string "%Y")`
+ */
+
+$0

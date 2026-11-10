@@ -54,3 +54,4 @@
 
 (package! gruber-darker-theme)
 (package! rainbow-mode)
+(package! drag-stuff)

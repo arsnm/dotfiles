@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Begin - End environment
+# key: beg
+# --
+\begin{${1:env}}${2:[${3:options}]}
+    $0
+\end{$1}

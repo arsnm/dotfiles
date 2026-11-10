@@ -103,20 +103,27 @@
   :defer t
   :commands (rainbow-mode))
 
-(setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/agent.sock"))
+(use-package! drag-stuff
+  :defer t
+  :init
+  (map! :v "J" #'drag-stuff-down
+        :v "K" #'drag-stuff-up))
 
-(map! :v "J" ":m '>+1<CR>gv=gv"
-      :v "K" ":m '<-2<CR>gv=gv")
+(setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/agent.sock"))
 
 (load! "lsp")
 
-;;; Python stack (Ruff + uv + ty)
-(after! apheleia
-  (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff-isort ruff))
-  (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff-isort ruff)))
+;; Python formatter (ruff)
+(with-eval-after-load 'python
+  (set-formatter! 'ruff :modes '(python-mode python-ts-mode)))
 
-(after! eglot
-  (add-to-list 'eglot-server-programs
-               '(((python-mode :language-id "python")
-                  (python-ts-mode :language-id "python"))
-                 . ("ty" "server"))))
+;; Dictionnaries / Spell Checking
+(setq ispell-dictionnary "en"
+      ispell-personal-dictionary (expand-file-name "dict/en.pws" doom-user-dir))
+
+(add-hook! 'spell-fu-mode-hook
+  (defun +spell-add-french-h ()
+    (spell-fu-dictionary-add (spell-fu-get-ispell-dictionary "fr"))
+    (spell-fu-dictionary-add
+     (spell-fu-get-personnal-dictionary
+      "fr-personal" (expand-file-name "dict/fr.pws" doom-user-dir)))))

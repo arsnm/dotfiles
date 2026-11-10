@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Header Guart with auto-name
+# key: hhead
+# --
+#ifndef ${1:`(my/c-header-guard)`}
+#define $1
+
+$0
+
+#endif // $1

@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: ARM Cortex-M4 assembly header
+# key: arm_head
+# expand-env: ((yas-indent-line (quote fixed)))
+# --
+.syntax unified
+.arch armv7e-m
+.cpu cortex-m4
+
+.thumb
+
+.global _start
+
+_start:
+    $0
