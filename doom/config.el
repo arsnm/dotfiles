@@ -117,8 +117,8 @@
 (with-eval-after-load 'python
   (set-formatter! 'ruff :modes '(python-mode python-ts-mode)))
 
-;; Dictionnaries / Spell Checking
-(setq ispell-dictionnary "en"
+;; Dictionaries / Spell Checking
+(setq ispell-dictionary "en"
       ispell-personal-dictionary (expand-file-name "dict/en.pws" doom-user-dir))
 
 (add-hook! 'spell-fu-mode-hook
