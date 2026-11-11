@@ -8,6 +8,7 @@ local uwsm = "uwsm app -- "
 local terminal = "kitty"
 local browser = "firefox"
 local fileManager = "dolphin"
+local textEditor = "emacsclient -r -n"
 local menu = "anyrun"
 
 hl.bind(
@@ -38,6 +39,10 @@ hl.bind(
 hl.bind(
     mainMod .. " + space",
     hl.dsp.exec_cmd(uwsm .. menu)
+)
+hl.bind(
+    mainMod .. " + T",
+    hl.dsp.exec_cmd(uwsm .. textEditor)
 )
 hl.bind(
     mainMod .. " + V",
@@ -283,7 +288,7 @@ hl.define_submap("osu_mode", function()
 end)
 
 hl.on("keybinds.submap", function(submap_name)
-    if submap_name == "osu_mode" then
+    if submap_name == "osu" then
         hl.exec_cmd("hyprctl keyword input:kb_options 'grp:rctrl_rshift_toggle'")
     else
         hl.exec_cmd("hyprctl keyword input:kb_options 'caps:swapescape, grp:rctrl_rshift_toggle'")
