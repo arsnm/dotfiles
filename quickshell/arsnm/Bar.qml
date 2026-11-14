@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland
@@ -26,7 +27,7 @@ PanelWindow {
         anchor.rect.y: -6
     }
 
-    implicitHeight: 30
+    implicitHeight: 25
     margins {
         bottom: 2
         top: 4
@@ -37,7 +38,8 @@ PanelWindow {
 
     // Helper component for the module containers (left, center, right)
     component ModuleGroup : Rectangle {
-        color: Theme.bg
+        HoverHandler { id: hover }
+        color: hover.hovered ? Qt.alpha(Theme.bg, 0.9) : Qt.alpha(Theme.bg, 0.4)
         border.color: Theme.fg
         border.width: 1
         radius: 2

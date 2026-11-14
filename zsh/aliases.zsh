@@ -56,7 +56,7 @@ fi
 
 if [[ "$(uname)" == "Linux" ]]; then
     # to reboot on Windows (directly through UEFI)
-    alias bootwindows="sudo efibootmgr --bootnext 0000 && sudo reboot"
+    alias bootwindows="systemctl reboot --boot-loader-entry=auto-windows"
     # to remove unneeded packages (with pacman)
     alias pacclean="sudo pacman -Rnsc $(pacman -Qdtq)"
 fi

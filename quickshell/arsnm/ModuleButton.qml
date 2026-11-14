@@ -20,13 +20,12 @@ Rectangle {
 
 
     color: mouse.containsMouse ? Theme.bgHover : "transparent"
-    border.color: mouse.containsMouse ? Theme.active : "transparent"
-    border.width: mouse.containsMouse ? 1 : 0
+    border.width: 0
     radius: 2
 
     // Padding: 1px 3px (x2).
-    implicitWidth: label.implicitWidth + 6
-    implicitHeight: label.implicitHeight + 6
+    implicitWidth: label.implicitWidth + 1
+    implicitHeight: label.implicitHeight + 2
 
     Text {
         id: label

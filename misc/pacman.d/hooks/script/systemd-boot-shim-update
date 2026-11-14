@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+K=/etc/secureboot/signing
+SRC=/usr/lib/systemd/boot/efi/systemd-bootx64.efi
+ESP=/boot/efi
+sbsign --key "$K.key" --cert "$K.crt" --output "$SRC.signed" "$SRC"
+bootctl --esp-path="$ESP" update --graceful --no-variables
+cp "$ESP/EFI/systemd/systemd-bootx64.efi" "$ESP/EFI/systemd/grubx64.efi"

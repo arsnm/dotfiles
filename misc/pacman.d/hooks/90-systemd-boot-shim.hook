@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = systemd
+
+[Action]
+Description = Signing systemd-boot and refreshing shim's grubx64.efi ...
+When = PostTransaction
+Depends = sbsigntools
+Exec = /usr/local/bin/systemd-boot-shim-update
